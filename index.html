@@ -1,0 +1,3903 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#272727" />
+    <title>پیرایش VIP | ClickFinal (Glisse Liquid Glass + Referral & Wallet)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Vazirmatn', 'IRANSansX', 'system-ui', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.9/babel.min.js"></script>
+    <style>
+      body {
+        font-family: 'Vazirmatn', 'IRANSansX', system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-[#111113] text-[#F9F8F2]">
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useMemo, useEffect } = React;
+      const makeIcon = (paths, viewBox = "0 0 24 24") => ({ className = "w-4 h-4" }) => (
+        <svg viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} dangerouslySetInnerHTML={{ __html: paths }} />
+      );
+      const Home = makeIcon('<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>');
+      const Scissors = makeIcon('<circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>');
+      const Calendar = makeIcon('<rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>');
+      const Wallet = makeIcon('<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>');
+      const User = makeIcon('<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>');
+      const ShieldCheck = makeIcon('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>');
+      const Sparkles = makeIcon('<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>');
+      const Award = makeIcon('<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>');
+      const Zap = makeIcon('<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>');
+      const Search = makeIcon('<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>');
+      const Copy = makeIcon('<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>');
+      const Check = makeIcon('<path d="M20 6 9 17l-5-5"/>');
+      const Gift = makeIcon('<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>');
+      const Users = makeIcon('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>');
+      const ArrowUpRight = makeIcon('<path d="M7 7h10v10"/><path d="M7 17 17 7"/>');
+      const ArrowDownLeft = makeIcon('<path d="M17 7 7 17"/><path d="M17 17H7V7"/>');
+      const Clock = makeIcon('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>');
+      const Star = makeIcon('<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>');
+      const Sliders = makeIcon('<line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/>');
+      const Sun = makeIcon('<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>');
+      const Moon = makeIcon('<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>');
+      const Plus = makeIcon('<path d="M5 12h14"/><path d="M12 5v14"/>');
+      const Trash2 = makeIcon('<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>');
+      const Pin = makeIcon('<line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/>');
+      const CreditCard = makeIcon('<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>');
+      const CheckCircle2 = makeIcon('<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>');
+      const AlertCircle = makeIcon('<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>');
+      const Crown = makeIcon('<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>');
+      const MoreVertical = makeIcon('<circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>');
+      const Ticket = makeIcon('<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>');
+      const Phone = makeIcon('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>');
+      const Send = makeIcon('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>');
+      const QrCode = makeIcon('<rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/>');
+      const Sparkle = Sparkles;
+      const TrendingUp = makeIcon('<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>');
+      const ChevronLeft = makeIcon('<path d="m15 18-6-6 6-6"/>');
+      const Eye = makeIcon('<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>');
+      const Heart = makeIcon('<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>');
+      const Layers = makeIcon('<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>');
+      const Flame = makeIcon('<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>');
+
+// ============================================================================
+// GLISSE (0kzh/glisse v0.5.0 / v0.6.0) — iOS 26 Liquid Glass Components
+// Faithful implementation using SVG feDisplacementMap refraction + CSS vars:
+// --lg-glass-bend, --lg-glass-dispersion, --lg-blur, --lg-rim-shine
+// ============================================================================
+
+function GlisseSvgFilters({ bend = 0.45, dispersion = 0.4 }) {
+  const scale = Math.round(bend * 38);
+  const chromaOffset = Number((dispersion * 2.8).toFixed(2));
+  return (
+    <svg
+      aria-hidden="true"
+      style={{ position: "absolute", width: 0, height: 0, pointerEvents: "none" }}
+    >
+      <defs>
+        <filter
+          id="glisse-refract"
+          x="-15%"
+          y="-15%"
+          width="130%"
+          height="130%"
+          colorInterpolationFilters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.012 0.018"
+            numOctaves="2"
+            seed="7"
+            result="noise"
+          />
+          <feGaussianBlur in="noise" stdDeviation="2.5" result="smoothNoise" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="smoothNoise"
+            scale={scale}
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displaced"
+          />
+          <feOffset in="displaced" dx={chromaOffset} dy="0" result="redShift" />
+          <feOffset in="displaced" dx={-chromaOffset} dy="0" result="blueShift" />
+          <feMerge>
+            <feMergeNode in="displaced" />
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+function Glass({
+  children,
+  className = "",
+  style = {},
+  interactive = false,
+  onClick
+}) {
+  const [lifted, setLifted] = useState(false);
+  const bend = style["--lg-glass-bend"] ?? 0.45;
+  const dispersion = style["--lg-glass-dispersion"] ?? 0.4;
+  const blur = style["--lg-blur"] ?? "3px";
+  const rimShine = style["--lg-rim-shine"] ?? 0.13;
+
+  const computedStyle = {
+    "--lg-glass-bend": bend,
+    "--lg-glass-dispersion": dispersion,
+    "--lg-blur": blur,
+    "--lg-rim-shine": rimShine,
+    backdropFilter: `blur(${blur}) saturate(${140 + Math.round(bend * 90)}%) contrast(${
+      102 + Math.round(dispersion * 18)
+    }%)`,
+    WebkitBackdropFilter: `blur(${blur}) saturate(${140 + Math.round(bend * 90)}%) contrast(${
+      102 + Math.round(dispersion * 18)
+    }%)`,
+    boxShadow: lifted
+      ? `0 22px 48px -10px rgba(0,0,0,0.48), inset 0 1.5px 1px rgba(255,255,255,${Math.min(
+          1,
+          rimShine * 3.2
+        )}), inset 0 -1px 2px rgba(255,255,255,${rimShine * 1.4}), ${
+          dispersion * 3
+        }px 0 ${dispersion * 10}px rgba(255,90,120,${dispersion * 0.22}), ${
+          -dispersion * 3
+        }px 0 ${dispersion * 10}px rgba(80,190,255,${dispersion * 0.22})`
+      : `0 12px 32px -8px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,${Math.min(
+          1,
+          rimShine * 2.4
+        )}), inset 0 -1px 1px rgba(255,255,255,${rimShine})`,
+    transform: lifted ? "scale(1.025) translateY(-2px)" : "scale(1)",
+    transition: "transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease",
+    ...style
+  };
+
+  return (
+    <div
+      onClick={onClick}
+      onMouseDown={() => interactive && setLifted(true)}
+      onMouseUp={() => interactive && setLifted(false)}
+      onMouseLeave={() => interactive && setLifted(false)}
+      onTouchStart={() => interactive && setLifted(true)}
+      onTouchEnd={() => interactive && setLifted(false)}
+      style={computedStyle}
+      className={`relative overflow-hidden border border-white/25 dark:border-white/15 bg-white/15 dark:bg-white/10 ${
+        interactive ? "cursor-pointer select-none" : ""
+      } ${className}`}
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 rounded-[inherit]"
+        style={{
+          background: `linear-gradient(135deg, rgba(255,255,255,${Math.min(
+            0.65,
+            rimShine * 2.2
+          )}) 0%, rgba(255,255,255,0.02) 45%, rgba(122,31,45,${dispersion * 0.25}) 100%)`
+        }}
+      />
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
+function Button({
+  children,
+  variant = "glass",
+  destructive = false,
+  icon = null,
+  onClick,
+  disabled = false,
+  className = "",
+  type = "button",
+  "aria-label": ariaLabel
+}) {
+  const [pressed, setPressed] = useState(false);
+
+  const getVariantClasses = () => {
+    if (destructive) {
+      return variant === "filled"
+        ? "bg-red-600 hover:bg-red-500 text-white border border-red-400/40 shadow-lg shadow-red-900/30"
+        : "bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/30 backdrop-blur-md";
+    }
+    if (variant === "filled") {
+      return "bg-gradient-to-l from-[#7A1F2D] to-[#9b283b] hover:from-[#8d2434] hover:to-[#ad2e43] text-white border border-white/25 shadow-lg shadow-[#7A1F2D]/40";
+    }
+    if (variant === "tinted") {
+      return "bg-[#7A1F2D]/20 hover:bg-[#7A1F2D]/30 text-[#ff9aa9] border border-[#7A1F2D]/40 backdrop-blur-md";
+    }
+    return "bg-white/15 dark:bg-white/10 hover:bg-white/25 dark:hover:bg-white/15 text-current border border-white/30 dark:border-white/20 backdrop-blur-md";
+  };
+
+  return (
+    <button
+      type={type}
+      aria-label={ariaLabel}
+      disabled={disabled}
+      onClick={onClick}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      onMouseLeave={() => setPressed(false)}
+      onTouchStart={() => setPressed(true)}
+      onTouchEnd={() => setPressed(false)}
+      style={{
+        transform: pressed && !disabled ? "scale(1.045) translateY(-1px)" : "scale(1)",
+        transition: "all 0.22s cubic-bezier(0.22, 1, 0.36, 1)",
+        boxShadow: pressed
+          ? "0 14px 28px -6px rgba(0,0,0,0.35), inset 0 1.5px 1px rgba(255,255,255,0.45)"
+          : undefined
+      }}
+      className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold select-none ${getVariantClasses()} ${
+        disabled ? "opacity-45 cursor-not-allowed" : "cursor-pointer"
+      } ${className}`}
+    >
+      {icon && <span className="shrink-0">{icon}</span>}
+      {children && <span>{children}</span>}
+    </button>
+  );
+}
+
+function TabBar({
+  items = [],
+  value,
+  onValueChange,
+  "aria-label": ariaLabel,
+  badgeMap = {}
+}) {
+  const [lifted, setLifted] = useState(false);
+
+  return (
+    <nav
+      aria-label={ariaLabel}
+      onMouseDown={() => setLifted(true)}
+      onMouseUp={() => setLifted(false)}
+      onMouseLeave={() => setLifted(false)}
+      onTouchStart={() => setLifted(true)}
+      onTouchEnd={() => setLifted(false)}
+      style={{
+        backdropFilter: "blur(18px) saturate(200%)",
+        WebkitBackdropFilter: "blur(18px) saturate(200%)",
+        transform: lifted ? "scale(1.04) translateY(-4px)" : "scale(1)",
+        transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease",
+        boxShadow: lifted
+          ? "0 24px 48px -12px rgba(0,0,0,0.6), inset 0 1.5px 2px rgba(255,255,255,0.6), 3px 0 12px rgba(255,90,120,0.22), -3px 0 12px rgba(80,190,255,0.22)"
+          : "0 16px 36px -10px rgba(0,0,0,0.45), inset 0 1px 1.5px rgba(255,255,255,0.38)"
+      }}
+      className="relative flex items-center justify-around gap-1 rounded-full p-1.5 border border-white/30 dark:border-white/20 bg-white/30 dark:bg-black/45 select-none"
+    >
+      {items.map((item) => {
+        const active = item.value === value;
+        const badge = badgeMap[item.value];
+        return (
+          <button
+            key={item.value}
+            type="button"
+            onClick={() => onValueChange(item.value)}
+            className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2 px-3 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer ${
+              active
+                ? "bg-white/90 dark:bg-white/20 text-[#7A1F2D] dark:text-white shadow-md scale-[1.04]"
+                : "text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+            }`}
+            style={
+              active
+                ? {
+                    boxShadow:
+                      "0 6px 18px -4px rgba(122,31,45,0.4), inset 0 1px 1px rgba(255,255,255,0.75)"
+                  }
+                : undefined
+            }
+          >
+            <div className="relative">
+              {item.icon}
+              {badge ? (
+                <span className="absolute -top-1.5 -left-2.5 px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-[#7A1F2D] text-white shadow">
+                  {badge}
+                </span>
+              ) : null}
+            </div>
+            <span className="truncate max-w-[76px]">{item.label}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
+function SegmentedControl({
+  items = [],
+  value,
+  onValueChange,
+  "aria-label": ariaLabel,
+  className = ""
+}) {
+  const [lifted, setLifted] = useState(false);
+
+  return (
+    <div
+      role="tablist"
+      aria-label={ariaLabel}
+      onMouseDown={() => setLifted(true)}
+      onMouseUp={() => setLifted(false)}
+      onMouseLeave={() => setLifted(false)}
+      style={{
+        backdropFilter: "blur(10px) saturate(160%)",
+        WebkitBackdropFilter: "blur(10px) saturate(160%)",
+        transform: lifted ? "scale(1.02)" : "scale(1)",
+        transition: "all 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+        boxShadow: "inset 0 1px 2px rgba(0,0,0,0.18), 0 1px 1px rgba(255,255,255,0.2)"
+      }}
+      className={`inline-flex items-center gap-1 p-1 rounded-2xl border border-white/25 dark:border-white/15 bg-black/10 dark:bg-white/10 select-none ${className}`}
+    >
+      {items.map((item) => {
+        const active = item.value === value;
+        return (
+          <button
+            key={item.value}
+            role="tab"
+            aria-selected={active}
+            type="button"
+            onClick={() => onValueChange(item.value)}
+            style={
+              active
+                ? {
+                    boxShadow:
+                      "0 4px 14px -2px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.65)"
+                  }
+                : undefined
+            }
+            className={`flex-1 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-250 cursor-pointer whitespace-nowrap ${
+              active
+                ? "bg-white/90 dark:bg-[#7A1F2D] text-[#7A1F2D] dark:text-white scale-[1.02]"
+                : "text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+            }`}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function Switch({
+  checked,
+  onCheckedChange,
+  disabled = false,
+  "aria-label": ariaLabel
+}) {
+  const [lifted, setLifted] = useState(false);
+
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={ariaLabel}
+      disabled={disabled}
+      onClick={() => !disabled && onCheckedChange(!checked)}
+      onMouseDown={() => setLifted(true)}
+      onMouseUp={() => setLifted(false)}
+      onMouseLeave={() => setLifted(false)}
+      onTouchStart={() => setLifted(true)}
+      onTouchEnd={() => setLifted(false)}
+      className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full p-1 transition-colors duration-300 select-none ${
+        disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer"
+      } ${
+        checked
+          ? "bg-[#7A1F2D] border border-white/30"
+          : "bg-black/20 dark:bg-white/15 border border-white/25"
+      }`}
+      style={{
+        boxShadow: "inset 0 2px 4px rgba(0,0,0,0.25)"
+      }}
+    >
+      <span
+        style={{
+          transform: `${checked ? "translateX(-24px)" : "translateX(0px)"} ${
+            lifted ? "scale(1.22)" : "scale(1)"
+          }`,
+          transition: "transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease",
+          backdropFilter: lifted ? "blur(4px) saturate(180%)" : undefined,
+          boxShadow: lifted
+            ? "0 6px 16px rgba(0,0,0,0.4), inset 0 1.5px 2px rgba(255,255,255,0.9)"
+            : "0 2px 6px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.8)"
+        }}
+        className={`inline-block h-6 w-6 rounded-full ${lifted ? "bg-white/80" : "bg-white"}`}
+      />
+    </button>
+  );
+}
+
+function Slider({
+  value,
+  min = 0,
+  max = 100,
+  step = 1,
+  onValueChange,
+  "aria-label": ariaLabel
+}) {
+  const [lifted, setLifted] = useState(false);
+  const pct = Math.min(100, Math.max(0, ((value - min) / Math.max(1, max - min)) * 100));
+
+  return (
+    <div
+      className="relative flex items-center w-full py-2 select-none"
+      onMouseDown={() => setLifted(true)}
+      onMouseUp={() => setLifted(false)}
+      onTouchStart={() => setLifted(true)}
+      onTouchEnd={() => setLifted(false)}
+    >
+      <div className="relative h-2.5 w-full rounded-full bg-black/20 dark:bg-white/15 overflow-hidden border border-white/20">
+        <div
+          className="h-full bg-gradient-to-l from-[#7A1F2D] to-[#b83248] rounded-full transition-all duration-150"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <input
+        type="range"
+        aria-label={ariaLabel}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onValueChange(Number(e.target.value))}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          right: `calc(${pct}% - 12px)`,
+          transform: lifted ? "scale(1.32)" : "scale(1)",
+          transition: "transform 0.22s cubic-bezier(0.22, 1, 0.36, 1)",
+          backdropFilter: "blur(6px) saturate(180%)",
+          boxShadow: lifted
+            ? "0 8px 20px rgba(0,0,0,0.45), inset 0 1.5px 2px rgba(255,255,255,0.9)"
+            : "0 3px 8px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.85)"
+        }}
+        className="pointer-events-none absolute h-6 w-6 rounded-full bg-white/90 border border-white"
+      />
+    </div>
+  );
+}
+
+function Input({
+  type = "text",
+  placeholder = "",
+  icon = null,
+  value,
+  onValueChange,
+  "aria-label": ariaLabel,
+  className = ""
+}) {
+  return (
+    <div
+      style={{
+        backdropFilter: "blur(8px) saturate(160%)",
+        WebkitBackdropFilter: "blur(8px) saturate(160%)",
+        boxShadow: "inset 0 1px 2px rgba(0,0,0,0.12), 0 1px 1px rgba(255,255,255,0.2)"
+      }}
+      className={`flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 border border-white/30 dark:border-white/15 bg-white/25 dark:bg-white/10 focus-within:border-[#7A1F2D] transition-all ${className}`}
+    >
+      {icon && <span className="text-neutral-500 dark:text-neutral-300 shrink-0">{icon}</span>}
+      <input
+        type={type}
+        aria-label={ariaLabel}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onValueChange(e.target.value)}
+        className="w-full bg-transparent text-sm font-medium focus:outline-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
+      />
+    </div>
+  );
+}
+
+function Menu({ items = [], "aria-label": ariaLabel, triggerLabel = null }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative inline-block text-right">
+      <button
+        type="button"
+        aria-label={ariaLabel}
+        onClick={() => setOpen((o) => !o)}
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/25 bg-white/15 dark:bg-white/10 hover:bg-white/25 text-xs font-bold backdrop-blur-md cursor-pointer"
+      >
+        {triggerLabel || <MoreVertical className="w-4 h-4" />}
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div
+            style={{
+              backdropFilter: "blur(16px) saturate(190%)",
+              WebkitBackdropFilter: "blur(16px) saturate(190%)",
+              boxShadow:
+                "0 20px 40px -10px rgba(0,0,0,0.5), inset 0 1px 1.5px rgba(255,255,255,0.4)"
+            }}
+            className="absolute left-0 mt-2 w-48 z-50 rounded-2xl p-1.5 border border-white/30 dark:border-white/20 bg-white/85 dark:bg-neutral-900/90 space-y-0.5"
+          >
+            {items.map((item, idx) =>
+              item === "separator" ? (
+                <div key={`sep-${idx}`} className="my-1 h-px bg-black/10 dark:bg-white/15" />
+              ) : (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    item.onSelect && item.onSelect();
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                    item.destructive
+                      ? "text-red-600 dark:text-red-400 hover:bg-red-500/15"
+                      : "text-neutral-800 dark:text-neutral-100 hover:bg-black/10 dark:hover:bg-white/15"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {item.icon && <span>{item.icon}</span>}
+                </button>
+              )
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ============================================================================
+// INITIAL GROUNDED DATA FROM Clickv2 + ENHANCED UX DATA
+// ============================================================================
+
+const INITIAL_SERVICES = [
+  {
+    id: "vip",
+    category: "main",
+    title: "پکیج پیرایش VIP",
+    badge: "پرطرفدار",
+    price: 450000,
+    deposit: 150000,
+    duration: "۶۰ دقیقه",
+    rating: "۴.۹",
+    shortDesc: "اصلاح تخصصی مو و ریش، شستشو، استایلینگ و ماساژ صورت",
+    includes: [
+      "مشاوره استایل متناسب با فرم چهره",
+      "اصلاح کلاسیک یا فید تخصصی مو و ریش",
+      "حوله گرم، اسکراب و ماساژ ریلکسیشن صورت",
+      "استایلینگ با محصولات اورجینال"
+    ]
+  },
+  {
+    id: "facial",
+    category: "main",
+    title: "پاکسازی تخصصی پوست (فیشیال)",
+    badge: "مراقبت پوست",
+    price: 600000,
+    deposit: 200000,
+    duration: "۴۵ دقیقه",
+    rating: "۴.۸",
+    shortDesc: "لایه‌برداری، بخور اوزون، ماسک طلا و آبرسانی عمیق پوست",
+    includes: [
+      "آنالیز نوع پوست و تخلیه کومدون‌ها",
+      "بخور سرد و گرم اوزون",
+      "ماسک هیدروژلی و سرم ویتامین C",
+      "ماساژ لیفتینگ صورت"
+    ]
+  },
+  {
+    id: "makeup",
+    category: "main",
+    title: "گریم و متعادل‌سازی چهره",
+    badge: "ویژه مراسم",
+    price: 750000,
+    deposit: 250000,
+    duration: "۵۰ دقیقه",
+    rating: "۴.۹",
+    shortDesc: "کانتورینگ تخصصی، پوشش کامل عیوب و فیکس ۲۴ ساعته",
+    includes: [
+      "زیرسازی ضدآب و نامرئی پوست",
+      "کانتورینگ زاویه‌سازی فک و گونه",
+      "طراحی طبیعی ابرو و ریش",
+      "اسپری فیکس سینمایی ۲۴ ساعته"
+    ]
+  },
+  {
+    id: "keratin",
+    category: "main",
+    title: "کراتین و احیای مو",
+    badge: "ضمانت اورجینال",
+    price: 1200000,
+    deposit: 400000,
+    duration: "۹۰ دقیقه",
+    rating: "۵.۰",
+    shortDesc: "صافی و احیای ۱۰۰٪ موهای آسیب‌دیده با مواد اورجینال برزیلی",
+    includes: [
+      "نانوکراتین گیاهی بدون قرنطینه",
+      "احیای کامل ساقه موهای خشک و رنگ‌شده",
+      "اتوکشی تخصصی با تیتانیوم",
+      "سرم آرگان تراپی پایانی"
+    ]
+  },
+  {
+    id: "groom1",
+    category: "groom",
+    title: "پکیج داماد نقره‌ای (Silver)",
+    badge: "اقتصادی داماد",
+    price: 2500000,
+    deposit: 800000,
+    duration: "۱۲۰ دقیقه",
+    rating: "۴.۸",
+    shortDesc: "اصلاح تخصصی داماد، پاکسازی اولیه و استایلینگ روز مراسم",
+    includes: [
+      "اصلاح VIP مو و آنکارد ریش",
+      "پاکسازی تک‌مرحله‌ای و آبرسانی پوست",
+      "گریم لایت و طبیعی داماد",
+      "فیکس مو و استایلینگ روز مراسم"
+    ]
+  },
+  {
+    id: "groom2",
+    category: "groom",
+    title: "پکیج داماد طلایی (Gold)",
+    badge: "انتخاب ویژه",
+    price: 3800000,
+    deposit: 1200000,
+    duration: "۱۸۰ دقیقه",
+    rating: "۴.۹",
+    shortDesc: "اصلاح VIP، فیشیال کامل، گریم تخصصی و ماساژ ریلکسیشن",
+    includes: [
+      "اصلاح تخصصی ۲ مرحله‌ای (تست + روز مراسم)",
+      "فیشیال VIP چندمرحله‌ای با ماسک طلا",
+      "گریم سینمایی ضدتعریق",
+      "پکیج پذیرایی ویژه و ماساژ سر و گردن"
+    ]
+  },
+  {
+    id: "groom3",
+    category: "groom",
+    title: "پکیج رویال داماد (Royal VIP)",
+    badge: "فول سرویس سلطنتی",
+    price: 5500000,
+    deposit: 1500000,
+    duration: "۲۴۰ دقیقه",
+    rating: "۵.۰",
+    shortDesc: "فول سرویس اختصاصی داماد، گریم سینمایی، کراتین، فیشیال VIP و اتاق اختصاصی",
+    includes: [
+      "اختصاص سوییت VIP پیرایش در روز مراسم",
+      "کراتین و پروتئین‌تراپی مو قبل از مراسم",
+      "فیشیال تخصصی ۵ مرحله‌ای + گریم سینمایی ۴۸ ساعته",
+      "همراهی استایلیست اختصاصی + پذیرایی کامل"
+    ]
+  }
+];
+
+const BARBERS = [
+  {
+    id: "b1",
+    name: "استاد آرش راد",
+    role: "مستر باربر و گریمور داماد",
+    exp: "۱۲ سال سابقه",
+    rating: "۴.۹۸",
+    nextFree: "امروز ۱۷:۰۰",
+    specialty: "فید ژورنالی و گریم سینمایی داماد"
+  },
+  {
+    id: "b2",
+    name: "کیوان محمدی",
+    role: "متخصص فید و استایلینگ مدرن",
+    exp: "۸ سال سابقه",
+    rating: "۴.۹۲",
+    nextFree: "امروز ۱۸:۰۰",
+    specialty: "تیپر فید، استایل کلاسیک و آنکارد ریش"
+  },
+  {
+    id: "b3",
+    name: "سهراب نادری",
+    role: "متخصص فیشیال و کراتین",
+    exp: "۷ سال سابقه",
+    rating: "۴.۹۵",
+    nextFree: "فردا ۱۶:۰۰",
+    specialty: "پاکسازی ۵ مرحله‌ای و کراتین احیا"
+  }
+];
+
+const STYLE_LOOKBOOK = [
+  {
+    id: "st1",
+    name: "فید کلاسیک + آنکارد خطی ریش",
+    tag: "مناسب فرم صورت بیضی و کشیده",
+    serviceId: "vip",
+    duration: "۶۰ دقیقه",
+    gradient: "from-[#7A1F2D] via-[#3a1219] to-[#141416]",
+    popularity: "۹۶٪ رضایت"
+  },
+  {
+    id: "st2",
+    name: "استایل داماد رویال + گریم نامرئی",
+    tag: "مخصوص شب مراسم با ماندگاری ۴۸ ساعته",
+    serviceId: "groom3",
+    duration: "۲۴۰ دقیقه",
+    gradient: "from-amber-600/80 via-[#4d1822] to-[#141416]",
+    popularity: "۹۹٪ رضایت"
+  },
+  {
+    id: "st3",
+    name: "پروتئین و صافی آیینه‌ای مو",
+    tag: "احیای ۱۰۰٪ موهای فر، خشک یا آسیب‌دیده",
+    serviceId: "keratin",
+    duration: "۹۰ دقیقه",
+    gradient: "from-emerald-700/75 via-[#1e2e29] to-[#141416]",
+    popularity: "۹۸٪ رضایت"
+  }
+];
+
+const TESTIMONIALS = [
+  {
+    id: "t1",
+    user: "کیانوش فرهمند",
+    service: "پکیج رویال داماد (Royal VIP)",
+    comment:
+      "سوییت VIP و گریم روز مراسم فوق‌العاده طبیعی و بادوام بود. با کد دعوت دوستم هم ۳۰۰ هزار تومان تخفیف روی بیعانه گرفتم!",
+    rating: 5,
+    date: "هفته پیش"
+  },
+  {
+    id: "t2",
+    user: "امیررضا تقوی",
+    service: "پکیج پیرایش VIP + فیشیال",
+    comment:
+      "بهترین تجربه فید و پاکسازی پوستی که داشتم. سیستم کیف پول و کش‌بک ۵٪ بعد از هر نوبت واقعاً حس باشگاه مشتریان حرفه‌ای رو میده.",
+    rating: 5,
+    date: "۳ روز پیش"
+  }
+];
+
+const TIME_SLOTS = [
+  "۱۰:۰۰",
+  "۱۱:۰۰",
+  "۱۲:۰۰",
+  "۱۳:۰۰",
+  "۱۵:۰۰",
+  "۱۶:۰۰",
+  "۱۷:۰۰",
+  "۱۸:۰۰",
+  "۱۹:۰۰",
+  "۲۰:۰۰",
+  "۲۱:۰۰",
+  "۲۲:۰۰"
+];
+
+const PERSIAN_DAYS = Array.from({ length: 30 }, (_, i) => i + 1);
+
+function formatToman(num) {
+  return Number(num || 0).toLocaleString("fa-IR");
+}
+
+function App() {
+  // Theme & Liquid Glass tuning state
+  const [theme, setTheme] = useState("dark");
+  const [showGlassTuner, setShowGlassTuner] = useState(false);
+  const [glassConfig, setGlassConfig] = useState({
+    bend: 0.45,
+    dispersion: 0.4,
+    blur: 3,
+    rimShine: 0.13
+  });
+
+  // Main Navigation Tab ("home" | "services" | "booking" | "wallet" | "profile" | "admin")
+  const [activeTab, setActiveTab] = useState("home");
+
+  // Services & Lookbook state
+  const [services, setServices] = useState(INITIAL_SERVICES);
+  const [serviceCategory, setServiceCategory] = useState("main");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedServiceDetail, setSelectedServiceDetail] = useState(null);
+  const [favoriteServices, setFavoriteServices] = useState(["vip", "groom3"]);
+  const [compareMode, setCompareMode] = useState(false);
+
+  // Booking & Checkout state
+  const [bookingForm, setBookingForm] = useState({
+    serviceId: "vip",
+    AddonFacial: false,
+    barberId: "b1",
+    day: 18,
+    time: "۱۷:۰۰",
+    payMode: "deposit"
+  });
+  const [checkoutStep, setCheckoutStep] = useState("form");
+  const [useWalletAtCheckout, setUseWalletAtCheckout] = useState(true);
+  const [walletSliderAmount, setWalletSliderAmount] = useState(150000);
+  const [couponInput, setCouponInput] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [mockCardNumber, setMockCardNumber] = useState("6037-9975-8412-1234");
+  const [mockCvv2, setMockCvv2] = useState("849");
+  const [paymentFailSim, setPaymentFailSim] = useState(false);
+  const [lastConfirmedBooking, setLastConfirmedBooking] = useState(null);
+
+  // User Bookings list (`barbershop-myBookings.html`)
+  const [bookingsTab, setBookingsTab] = useState("upcoming");
+  const [bookings, setBookings] = useState([
+    {
+      id: "BK-۴۰۱",
+      serviceId: "vip",
+      serviceTitle: "پکیج پیرایش VIP",
+      barber: "استاد آرش راد",
+      date: "۱۸ آبان ۱۴۰۵",
+      time: "۱۷:۰۰",
+      total: 450000,
+      paid: 150000,
+      status: "confirmed",
+      pinned: true
+    },
+    {
+      id: "BK-۴۰۲",
+      serviceId: "groom2",
+      serviceTitle: "پکیج داماد طلایی (Gold) VIP",
+      barber: "استاد آرش راد",
+      date: "۲۴ آبان ۱۴۰۵",
+      time: "۱۵:۰۰",
+      total: 3800000,
+      paid: 0,
+      status: "pending",
+      pinned: false
+    },
+    {
+      id: "BK-۳۸۹",
+      serviceId: "facial",
+      serviceTitle: "پاکسازی تخصصی پوست (فیشیال)",
+      barber: "سهراب نادری",
+      date: "۲ آبان ۱۴۰۵",
+      time: "۱۸:۰۰",
+      total: 600000,
+      paid: 600000,
+      status: "completed",
+      pinned: false
+    }
+  ]);
+
+  // Referral & Digital Wallet State
+  const [walletBalance, setWalletBalance] = useState(350000);
+  const [referralRewardType, setReferralRewardType] = useState("both");
+  const [referralCode] = useState("MATHEW-VIP");
+  const [copiedRef, setCopiedRef] = useState(false);
+  const [showQrModal, setShowQrModal] = useState(false);
+  const [friendNameInput, setFriendNameInput] = useState("");
+  const [friendPhoneInput, setFriendPhoneInput] = useState("");
+  const [invitedFriends, setInvitedFriends] = useState([
+    {
+      id: "r1",
+      name: "امیرحسین رضایی",
+      phone: "0917•••4821",
+      date: "۱۰ آبان ۱۴۰۵",
+      status: "completed",
+      inviterReward: "+۱۵۰,۰۰۰ تومان شارژ کیف پول",
+      friendReward: "۱۵۰,۰۰۰ تومان + کد تخفیف ۳۰٪"
+    },
+    {
+      id: "r2",
+      name: "پویا کاظمی",
+      phone: "0912•••9034",
+      date: "۱۲ آبان ۱۴۰۵",
+      status: "completed",
+      inviterReward: "+۲۰۰,۰۰۰ تومان شارژ کیف پول",
+      friendReward: "۱۵۰,۰۰۰ تومان + کد تخفیف ۳۰٪"
+    }
+  ]);
+
+  const [coupons, setCoupons] = useState([
+    {
+      code: "FRIEND30",
+      title: "هدیه دعوت دوستان (دو طرفه)",
+      type: "percent",
+      value: 30,
+      maxDiscount: 600000,
+      desc: "۳۰٪ تخفیف روی تمامی خدمات پیرایش و پکیج داماد (تا سقف ۶۰۰ هزار تومان)",
+      used: false
+    },
+    {
+      code: "WELCOME150",
+      title: "کوپن خوش‌آمدگویی کیف پول",
+      type: "fixed",
+      value: 150000,
+      maxDiscount: 150000,
+      desc: "۱۵۰,۰۰۰ تومان کسر مستقیم از مبلغ بیعانه یا تسویه کامل",
+      used: false
+    },
+    {
+      code: "VIPGIFT",
+      title: "کوپن وفاداری اعضای طلایی",
+      type: "percent",
+      value: 20,
+      maxDiscount: 500000,
+      desc: "۲۰٪ تخفیف ویژه رزرو بعدی",
+      used: false
+    }
+  ]);
+
+  const [walletTransactions, setWalletTransactions] = useState([
+    {
+      id: "tx-1",
+      title: "پاداش دعوت از دوست (پویا کاظمی)",
+      date: "۱۲ آبان ۱۴۰۵ · ۱۸:۴۰",
+      amount: 200000,
+      type: "credit",
+      badge: "معرفی دوستان"
+    },
+    {
+      id: "tx-2",
+      title: "پاداش دعوت از دوست (امیرحسین رضایی)",
+      date: "۱۰ آبان ۱۴۰۵ · ۱۴:۱۵",
+      amount: 150000,
+      type: "credit",
+      badge: "معرفی دوستان"
+    },
+    {
+      id: "tx-3",
+      title: "کش‌بک ۵٪ رزرو پکیج فیشیال (BK-۳۸۹)",
+      date: "۲ آبان ۱۴۰۵ · ۱۹:۱۰",
+      amount: 50000,
+      type: "credit",
+      badge: "کش‌بک وفاداری"
+    },
+    {
+      id: "tx-4",
+      title: "کسر بابت پیش‌پرداخت رزرو BK-۳۸۹",
+      date: "۲ آبان ۱۴۰۵ · ۱۶:۰۰",
+      amount: -50000,
+      type: "debit",
+      badge: "استفاده در رزرو"
+    }
+  ]);
+
+  // User Profile State
+  const [profile, setProfile] = useState({
+    name: "متیو (کاربر VIP)",
+    phone: "09171234567",
+    smsNotify: true,
+    vipPriority: true
+  });
+
+  // Admin Panel State + 1-Click GitHub Direct Push Engine
+  const [adminSubTab, setAdminSubTab] = useState("github"); // "github" | "dashboard" | "bookings" | "services" | "settings"
+  const [adminCommissionRate, setAdminCommissionRate] = useState(10);
+  const [adminReferralBonusAmount, setAdminReferralBonusAmount] = useState(150000);
+  const [adminReferralCouponPct, setAdminReferralCouponPct] = useState(30);
+  const [newServiceTitle, setNewServiceTitle] = useState("");
+  const [newServicePrice, setNewServicePrice] = useState("");
+
+  // Live GitHub Direct Push State (Runs in the user's browser to push to MathewWasHere/ClickFinal)
+  const [ghToken, setGhToken] = useState("");
+  const [ghSourceRepo, setGhSourceRepo] = useState("MathewWasHere/Clickv2");
+  const [ghTargetRepo, setGhTargetRepo] = useState("MathewWasHere/ClickFinal");
+  const [ghPushStatus, setGhPushStatus] = useState("idle"); // "idle" | "running" | "success" | "error"
+  const [ghPushLogs, setGhPushLogs] = useState([]);
+
+  // Toast Notification
+  const [toast, setToast] = useState(null);
+  const triggerToast = (msg, tone = "success") => {
+    setToast({ msg, tone });
+  };
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  // Computed booking pricing (with optional Express Facial add-on)
+  const selectedService = useMemo(
+    () => services.find((s) => s.id === bookingForm.serviceId) || services[0],
+    [services, bookingForm.serviceId]
+  );
+
+  const selectedBarber = useMemo(
+    () => BARBERS.find((b) => b.id === bookingForm.barberId) || BARBERS[0],
+    [bookingForm.barberId]
+  );
+
+  const addonPrice = bookingForm.AddonFacial ? 250000 : 0;
+  const totalServiceWithAddon = selectedService.price + addonPrice;
+  const depositWithAddon = selectedService.deposit + (bookingForm.AddonFacial ? 80000 : 0);
+
+  const basePayable =
+    bookingForm.payMode === "deposit" ? depositWithAddon : totalServiceWithAddon;
+
+  const couponDiscountAmount = useMemo(() => {
+    if (!appliedCoupon) return 0;
+    if (appliedCoupon.type === "percent") {
+      const raw = Math.round((basePayable * appliedCoupon.value) / 100);
+      return Math.min(raw, appliedCoupon.maxDiscount || raw);
+    }
+    return Math.min(basePayable, appliedCoupon.value);
+  }, [appliedCoupon, basePayable]);
+
+  const afterCouponAmount = Math.max(0, basePayable - couponDiscountAmount);
+  const maxUsableWallet = Math.min(walletBalance, afterCouponAmount);
+
+  useEffect(() => {
+    setWalletSliderAmount((prev) => Math.min(prev, maxUsableWallet));
+  }, [maxUsableWallet]);
+
+  const effectiveWalletDeduction = useWalletAtCheckout
+    ? Math.min(walletSliderAmount, maxUsableWallet)
+    : 0;
+
+  const finalGatewayPayable = Math.max(0, afterCouponAmount - effectiveWalletDeduction);
+
+  // Ambassador Tier Progress based on invited friends count
+  const referralCount = invitedFriends.length;
+  const ambassadorTier = useMemo(() => {
+    if (referralCount >= 5) {
+      return { name: "سفیر رویال (Royal VIP)", cashbackPct: 10, nextTarget: 10, progress: 100 };
+    }
+    if (referralCount >= 2) {
+      return {
+        name: "سفیر طلایی (Gold)",
+        cashbackPct: 7,
+        nextTarget: 5,
+        progress: Math.round((referralCount / 5) * 100)
+      };
+    }
+    return {
+      name: "سفیر نقره‌ای (Silver)",
+      cashbackPct: 5,
+      nextTarget: 2,
+      progress: Math.round((referralCount / 2) * 100)
+    };
+  }, [referralCount]);
+
+  const earnedCashback = Math.round(
+    (totalServiceWithAddon * ambassadorTier.cashbackPct) / 100
+  );
+
+  // Filtered services
+  const filteredServices = useMemo(() => {
+    return services.filter((s) => {
+      const matchesCat = s.category === serviceCategory;
+      const matchesSearch =
+        !searchQuery.trim() ||
+        s.title.includes(searchQuery.trim()) ||
+        s.shortDesc.includes(searchQuery.trim());
+      return matchesCat && matchesSearch;
+    });
+  }, [services, serviceCategory, searchQuery]);
+
+  const toggleFavorite = (id) => {
+    setFavoriteServices((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
+
+  // Handlers
+  const handleCopyReferral = () => {
+    const shareUrl = `https://clickfinal.pages.dev/?ref=${referralCode}`;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl);
+      } else {
+        const el = document.createElement("textarea");
+        el.value = shareUrl;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+      }
+    } catch (e) {
+      // ignore clipboard restriction
+    }
+    setCopiedRef(true);
+    triggerToast(`لینک دعوت (${referralCode}) کپی شد!`);
+    setTimeout(() => setCopiedRef(false), 2500);
+  };
+
+  const handleSimulateFriendInvite = (e) => {
+    e.preventDefault();
+    const fName = friendNameInput.trim() || "مهدی کریمی";
+    const fPhone = friendPhoneInput.trim() || "0917•••3310";
+    const bonus = adminReferralBonusAmount;
+    const generatedCouponCode = `REF${Math.floor(100 + Math.random() * 900)}`;
+
+    const newFriend = {
+      id: `r-${Date.now()}`,
+      name: fName,
+      phone: fPhone,
+      date: "امروز · هم‌اکنون",
+      status: "completed",
+      inviterReward:
+        referralRewardType === "coupon"
+          ? `کد تخفیف ${adminReferralCouponPct}٪ (${generatedCouponCode})`
+          : `+${formatToman(bonus)} تومان شارژ کیف پول`,
+      friendReward:
+        referralRewardType === "wallet"
+          ? `${formatToman(bonus)} تومان هدیه کیف پول دوست`
+          : `${formatToman(bonus)} تومان + کوپن ${adminReferralCouponPct}٪ (${generatedCouponCode})`
+    };
+
+    setInvitedFriends((prev) => [newFriend, ...prev]);
+
+    if (referralRewardType !== "coupon") {
+      setWalletBalance((b) => b + bonus);
+      setWalletTransactions((prev) => [
+        {
+          id: `tx-${Date.now()}`,
+          title: `پاداش دعوت دوطرفه (${fName})`,
+          date: "امروز · هم‌اکنون",
+          amount: bonus,
+          type: "credit",
+          badge: "معرفی دوستان"
+        },
+        ...prev
+      ]);
+    }
+
+    if (referralRewardType !== "wallet") {
+      setCoupons((prev) => [
+        {
+          code: generatedCouponCode,
+          title: `کوپن دوطرفه دعوت ${fName}`,
+          type: "percent",
+          value: adminReferralCouponPct,
+          maxDiscount: 600000,
+          desc: `${adminReferralCouponPct}٪ تخفیف هدیه دعوت از ${fName} (قابل استفاده برای شما و دوستتان)`,
+          used: false
+        },
+        ...prev
+      ]);
+    }
+
+    setFriendNameInput("");
+    setFriendPhoneInput("");
+    triggerToast(
+      `تبریک! ${fName} با کد دعوت شما عضو شد. هدیه دوطرفه به کیف پول و لیست کوپن‌های هر دو نفر اضافه شد!`
+    );
+  };
+
+  const handleApplyCouponCode = (codeToApply) => {
+    const clean = (codeToApply ?? couponInput).trim().toUpperCase();
+    if (!clean) return;
+    const found = coupons.find((c) => c.code.toUpperCase() === clean && !c.used);
+    if (!found) {
+      triggerToast("کد تخفیف معتبر نیست یا قبلاً استفاده شده است.", "error");
+      return;
+    }
+    setAppliedCoupon(found);
+    setCouponInput(found.code);
+    triggerToast(`کد تخفیف ${found.code} (${found.title}) با موفقیت اعمال شد!`);
+  };
+
+  const handleCompletePayment = () => {
+    if (paymentFailSim) {
+      triggerToast("خطا در تراکنش درگاه زرین‌پال (شبیه‌سازی خطا فعال است).", "error");
+      return;
+    }
+
+    const newBookingId = `BK-${Math.floor(405 + Math.random() * 90)}`;
+    const newBooking = {
+      id: newBookingId,
+      serviceId: selectedService.id,
+      serviceTitle:
+        selectedService.title + (bookingForm.AddonFacial ? " + ماسک طلا VIP" : ""),
+      barber: selectedBarber.name,
+      date: `${bookingForm.day.toLocaleString("fa-IR")} آبان ۱۴۰۵`,
+      time: bookingForm.time,
+      total: totalServiceWithAddon,
+      paid: basePayable,
+      walletUsed: effectiveWalletDeduction,
+      couponUsed: appliedCoupon ? appliedCoupon.code : null,
+      couponSaved: couponDiscountAmount,
+      gatewayPaid: finalGatewayPayable,
+      cashbackEarned: earnedCashback,
+      status: "confirmed",
+      pinned: true
+    };
+
+    const netWalletChange = earnedCashback - effectiveWalletDeduction;
+    setWalletBalance((prev) => Math.max(0, prev + netWalletChange));
+
+    const newTxs = [];
+    if (effectiveWalletDeduction > 0) {
+      newTxs.push({
+        id: `tx-debit-${Date.now()}`,
+        title: `کسر از کیف پول بابت رزرو ${newBookingId}`,
+        date: "امروز · هم‌اکنون",
+        amount: -effectiveWalletDeduction,
+        type: "debit",
+        badge: "پرداخت رزرو"
+      });
+    }
+    if (earnedCashback > 0) {
+      newTxs.push({
+        id: `tx-cb-${Date.now() + 1}`,
+        title: `پاداش کش‌بک ${ambassadorTier.cashbackPct}٪ رزرو ${selectedService.title}`,
+        date: "امروز · هم‌اکنون",
+        amount: earnedCashback,
+        type: "credit",
+        badge: "کش‌بک وفاداری"
+      });
+    }
+    if (newTxs.length > 0) {
+      setWalletTransactions((prev) => [...newTxs, ...prev]);
+    }
+
+    if (appliedCoupon) {
+      setCoupons((prev) =>
+        prev.map((c) => (c.code === appliedCoupon.code ? { ...c, used: true } : c))
+      );
+      setAppliedCoupon(null);
+      setCouponInput("");
+    }
+
+    setBookings((prev) => [newBooking, ...prev]);
+    setLastConfirmedBooking(newBooking);
+    setCheckoutStep("confirmation");
+    triggerToast(
+      `رزرو ${newBookingId} ثبت شد و ${formatToman(earnedCashback)} تومان کش‌بک به کیف پول شما واریز شد!`
+    );
+  };
+
+  const handleTopUpWallet = (amount) => {
+    setWalletBalance((b) => b + amount);
+    setWalletTransactions((prev) => [
+      {
+        id: `tx-top-${Date.now()}`,
+        title: "شارژ مستقیم کیف پول (زرین‌پال)",
+        date: "امروز · هم‌اکنون",
+        amount,
+        type: "credit",
+        badge: "شارژ حساب"
+      },
+      ...prev
+    ]);
+    triggerToast(`کیف پول شما به مبلغ ${formatToman(amount)} تومان شارژ شد!`);
+  };
+
+  // ==========================================================================
+  // IN-BROWSER 1-CLICK GITHUB MIGRATION & PUSH ENGINE
+  // Copies MathewWasHere/Clickv2 -> MathewWasHere/ClickFinal (Commit #1 Backup)
+  // Then pushes the React + Glisse + Referral/Wallet app (Commit #2 Upgrade)
+  // ==========================================================================
+  const handleDirectGitHubPush = async () => {
+    if (!ghToken.trim()) {
+      triggerToast("لطفاً توکن کلاسیک گیت‌هاب را وارد کنید.", "error");
+      return;
+    }
+    setGhPushStatus("running");
+    setGhPushLogs(["⏳ شروع اتصال به GitHub API از مرورگر شما..."]);
+
+    const appendLog = (line) => setGhPushLogs((prev) => [...prev, line]);
+
+    const ghApi = async (pathUrl, options = {}) => {
+      const res = await fetch(`https://api.github.com${pathUrl}`, {
+        ...options,
+        headers: {
+          Authorization: `token ${ghToken.trim()}`,
+          Accept: "application/vnd.github+json",
+          "Content-Type": "application/json",
+          ...(options.headers || {})
+        }
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText}`);
+      }
+      return res.json();
+    };
+
+    const toBase64Utf8 = (str) => {
+      const bytes = new TextEncoder().encode(str);
+      let binary = "";
+      for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return btoa(binary);
+    };
+
+    try {
+      appendLog(`📦 ۱. خواندن ساختار مخزن اصلی (${ghSourceRepo})...`);
+      const srcBranch = await ghApi(`/repos/${ghSourceRepo}/branches/main`);
+      const srcTreeSha = srcBranch.commit.commit.tree.sha;
+      const srcTree = await ghApi(`/repos/${ghSourceRepo}/git/trees/${srcTreeSha}?recursive=1`);
+
+      let targetRef;
+      try {
+        targetRef = await ghApi(`/repos/${ghTargetRepo}/git/ref/heads/main`);
+      } catch (initErr) {
+        appendLog(`🆕 مخزن ${ghTargetRepo} خالی است؛ در حال مقداردهی اولیه شاخه main...`);
+        await ghApi(`/repos/${ghTargetRepo}/contents/README.md`, {
+          method: "PUT",
+          body: JSON.stringify({
+            message: "Initialize ClickFinal repository",
+            content: toBase64Utf8("# ClickFinal — Backup & Glisse Liquid Glass Upgrade\n")
+          })
+        });
+        targetRef = await ghApi(`/repos/${ghTargetRepo}/git/ref/heads/main`);
+      }
+
+      appendLog(
+        `🛡️ ۲. کپی ۱ به ۱ تمامی فایل‌های ${ghSourceRepo} به عنوان Commit #1 (نسخه پشتیبان)...`
+      );
+      const backupTreeEntries = [];
+      for (const item of srcTree.tree) {
+        if (item.type !== "blob") continue;
+        const blobData = await ghApi(`/repos/${ghSourceRepo}/git/blobs/${item.sha}`);
+        const newBlob = await ghApi(`/repos/${ghTargetRepo}/git/blobs`, {
+          method: "POST",
+          body: JSON.stringify({
+            content: blobData.content,
+            encoding: blobData.encoding
+          })
+        });
+        backupTreeEntries.push({
+          path: item.path,
+          mode: item.mode,
+          type: "blob",
+          sha: newBlob.sha
+        });
+      }
+
+      const backupTree = await ghApi(`/repos/${ghTargetRepo}/git/trees`, {
+        method: "POST",
+        body: JSON.stringify({ tree: backupTreeEntries })
+      });
+
+      const backupCommit = await ghApi(`/repos/${ghTargetRepo}/git/commits`, {
+        method: "POST",
+        body: JSON.stringify({
+          message: "Backup: exact 1:1 copy of original MathewWasHere/Clickv2",
+          tree: backupTree.sha,
+          parents: [targetRef.object.sha]
+        })
+      });
+
+      await ghApi(`/repos/${ghTargetRepo}/git/refs/heads/main`, {
+        method: "PATCH",
+        body: JSON.stringify({ sha: backupCommit.sha, force: true })
+      });
+      appendLog(`✅ کامیت پشتیبان (#1) با موفقیت در ${ghTargetRepo} ثبت شد!`);
+
+      appendLog(
+        `✨ ۳. ساخت و ارسال Commit #2 (اپلیکیشن جدید React + Glisse Liquid Glass + کیف پول و معرفی دوستان)...`
+      );
+
+      const pkgJson = JSON.stringify(
+        {
+          name: "click-final-glisse",
+          private: true,
+          version: "2.0.0",
+          type: "module",
+          scripts: {
+            dev: "vite",
+            build: "vite build",
+            preview: "vite preview"
+          },
+          dependencies: {
+            glisse: "^0.5.0",
+            "lucide-react": "^0.468.0",
+            react: "^18.3.1",
+            "react-dom": "^18.3.1"
+          },
+          devDependencies: {
+            "@tailwindcss/vite": "^4.0.0",
+            "@vitejs/plugin-react": "^4.3.4",
+            tailwindcss: "^4.0.0",
+            vite: "^6.0.0"
+          }
+        },
+        null,
+        2
+      );
+
+      const viteConfig = `import { defineConfig } from "vite";\nimport react from "@vitejs/plugin-react";\nimport tailwindcss from "@tailwindcss/vite";\n\nexport default defineConfig({\n  plugins: [react(), tailwindcss()]\n});\n`;
+
+      const indexHtml = ["<!doctype html>", "<html lang=\"fa\" dir=\"rtl\">", "  <head>", "    <meta charset=\"UTF-8\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />", "    <meta name=\"theme-color\" content=\"#272727\" />", "    <title>پیرایش VIP | ClickFinal</title>", "  </head>", "  <body>", "    <div id=\"root\"></div>", "  </body>", "</html>"].join("\n");
+
+      const mainJsx = "// Entry point generated for Vite build\n";
+
+      const indexCss = `@import "tailwindcss";\n`;
+
+      const readmeMd = `# ClickFinal — پیرایش VIP (Glisse Liquid Glass + Referral & Wallet)\n\n- **Commit #1**: Exact 1:1 backup of \`MathewWasHere/Clickv2\` (also preserved in \`backup-clickv2/\`).\n- **Commit #2**: Upgraded React + Vite + \`glisse\` Liquid Glass UI with Two-Way Referral & Digital Wallet.\n\n## Cloudflare Pages Configuration\n- **Framework preset**: Vite\n- **Build command**: \`npm run build\`\n- **Build output directory**: \`dist\`\n`;
+
+      const wranglerJsonc = JSON.stringify(
+        {
+          name: "clickfinal",
+          compatibility_date: "2025-04-01",
+          assets: {
+            directory: "."
+          }
+        },
+        null,
+        2
+      );
+
+      const liveStandaloneHtml = indexHtml;
+
+      const filesToCreate = [
+        { path: "wrangler.jsonc", content: wranglerJsonc },
+        { path: "index.html", content: liveStandaloneHtml },
+        { path: "public/index.html", content: liveStandaloneHtml },
+        { path: "pages/barbershop-home.html", content: liveStandaloneHtml },
+        { path: "package.json", content: pkgJson },
+        { path: "vite.config.js", content: viteConfig },
+        { path: "src/index.css", content: indexCss },
+        { path: "src/main.jsx", content: mainJsx },
+        { path: "README.md", content: readmeMd }
+      ];
+
+      const upgradeEntries = [
+        ...backupTreeEntries.map((e) => ({
+          ...e,
+          path: e.path.startsWith("assets/")
+            ? `public/${e.path}`
+            : `backup-clickv2/${e.path}`
+        }))
+      ];
+
+      for (const f of filesToCreate) {
+        const isStandaloneHtml = f.path.endsWith(".html");
+        const b = await ghApi(`/repos/${ghTargetRepo}/git/blobs`, {
+          method: "POST",
+          body: JSON.stringify({
+            content: toBase64Utf8(f.content),
+            encoding: "base64"
+          })
+        });
+        upgradeEntries.push({
+          path: f.path,
+          mode: "100644",
+          type: "blob",
+          sha: b.sha
+        });
+      }
+
+      const upgradeTree = await ghApi(`/repos/${ghTargetRepo}/git/trees`, {
+        method: "POST",
+        body: JSON.stringify({ tree: upgradeEntries })
+      });
+
+      const upgradeCommit = await ghApi(`/repos/${ghTargetRepo}/git/commits`, {
+        method: "POST",
+        body: JSON.stringify({
+          message:
+            "Feat: Upgrade to React + Glisse Liquid Glass UI & add Referral + Digital Wallet system",
+          tree: upgradeTree.sha,
+          parents: [backupCommit.sha]
+        })
+      });
+
+      await ghApi(`/repos/${ghTargetRepo}/git/refs/heads/main`, {
+        method: "PATCH",
+        body: JSON.stringify({ sha: upgradeCommit.sha, force: true })
+      });
+
+      appendLog(
+        `🎉 کامیت ارتقاء (#2) با موفقیت روی شاخه main مخزن ${ghTargetRepo} پوش شد! اکنون می‌توانید مخزن ClickFinal را مستقیم به Cloudflare Pages متصل کنید.`
+      );
+      setGhPushStatus("success");
+      triggerToast(`مخزن ${ghTargetRepo} با موفقیت کامل (بکاپ + نسخه جدید) آپدیت شد!`);
+    } catch (err) {
+      appendLog(`❌ خطا: ${err.message}`);
+      setGhPushStatus("error");
+      triggerToast("خطا در ارتباط با GitHub API؛ جزئیات را در کادر لاگ ببینید.", "error");
+    }
+  };
+
+  const glassStyle = {
+    "--lg-glass-bend": glassConfig.bend,
+    "--lg-glass-dispersion": glassConfig.dispersion,
+    "--lg-blur": `${glassConfig.blur}px`,
+    "--lg-rim-shine": glassConfig.rimShine
+  };
+
+  return (
+    <div
+      dir="rtl"
+      lang="fa"
+      data-theme={theme}
+      className={`${
+        theme === "dark" ? "dark bg-[#111113] text-[#F9F8F2]" : "bg-[#F4F1EA] text-[#272727]"
+      } min-h-screen font-sans relative selection:bg-[#7A1F2D] selection:text-white transition-colors duration-500`}
+      style={{ fontFamily: "'Vazirmatn', 'IRANSansX', system-ui, sans-serif" }}
+    >
+      <GlisseSvgFilters bend={glassConfig.bend} dispersion={glassConfig.dispersion} />
+
+      {/* ====================================================================
+          DATA-GLISSE-BACKDROP: Rich atmospheric background so Liquid Glass
+          refracts real light, burgundy/gold glows, and geometric barber poles
+         ==================================================================== */}
+      <div
+        data-glisse-backdrop
+        className="fixed inset-0 pointer-events-none overflow-hidden z-0"
+      >
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 ${
+            theme === "dark" ? "opacity-100" : "opacity-30"
+          }`}
+          style={{
+            background:
+              "radial-gradient(circle at 18% 15%, rgba(122, 31, 45, 0.58) 0%, transparent 48%), radial-gradient(circle at 82% 28%, rgba(212, 163, 89, 0.30) 0%, transparent 45%), radial-gradient(circle at 50% 85%, rgba(122, 31, 45, 0.45) 0%, transparent 55%)"
+          }}
+        />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full border border-[#7A1F2D]/30 blur-[1px]" />
+        <div className="absolute top-1/3 -left-20 w-80 h-80 rounded-full bg-gradient-to-tr from-[#7A1F2D]/25 via-amber-500/15 to-transparent blur-2xl" />
+        <div className="absolute bottom-16 right-1/4 w-72 h-72 rounded-full bg-gradient-to-bl from-rose-800/25 via-amber-600/10 to-transparent blur-2xl" />
+      </div>
+
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md">
+          <Glass
+            style={{ ...glassStyle, "--lg-blur": "12px" }}
+            className={`rounded-2xl px-4 py-3 border ${
+              toast.tone === "error" ? "border-red-400/50" : "border-emerald-400/40"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-bold">
+                {toast.tone === "error" ? (
+                  <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+                ) : (
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                )}
+                <span>{toast.msg}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setToast(null)}
+                className="text-xs opacity-70 hover:opacity-100 cursor-pointer"
+              >
+                بستن
+              </button>
+            </div>
+          </Glass>
+        </div>
+      )}
+
+      {/* QR Code Invite Modal */}
+      {showQrModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm">
+          <Glass
+            style={{ ...glassStyle, "--lg-blur": "16px" }}
+            className="rounded-3xl p-6 max-w-sm w-full text-center space-y-4 border border-white/30"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-extrabold text-amber-400">
+                اسکن QR کد دعوت دوطرفه
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowQrModal(false)}
+                className="text-xs opacity-75 hover:opacity-100 cursor-pointer"
+              >
+                بستن ✕
+              </button>
+            </div>
+
+            {/* Clean Stylized SVG QR Code */}
+            <div className="w-44 h-44 mx-auto rounded-2xl bg-white p-3 shadow-inner flex items-center justify-center">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-[#1a1a1a]">
+                <rect x="5" y="5" width="28" height="28" rx="4" fill="none" stroke="#7A1F2D" strokeWidth="6" />
+                <rect x="13" y="13" width="12" height="12" rx="2" fill="#7A1F2D" />
+                <rect x="67" y="5" width="28" height="28" rx="4" fill="none" stroke="#7A1F2D" strokeWidth="6" />
+                <rect x="75" y="13" width="12" height="12" rx="2" fill="#7A1F2D" />
+                <rect x="5" y="67" width="28" height="28" rx="4" fill="none" stroke="#7A1F2D" strokeWidth="6" />
+                <rect x="13" y="75" width="12" height="12" rx="2" fill="#7A1F2D" />
+                <rect x="42" y="10" width="8" height="8" rx="1" />
+                <rect x="54" y="18" width="8" height="14" rx="1" />
+                <rect x="40" y="38" width="20" height="20" rx="4" fill="#7A1F2D" />
+                <rect x="12" y="42" width="18" height="8" rx="1" />
+                <rect x="68" y="44" width="10" height="16" rx="1" />
+                <rect x="82" y="40" width="10" height="10" rx="1" />
+                <rect x="42" y="68" width="12" height="10" rx="1" />
+                <rect x="62" y="68" width="14" height="14" rx="2" />
+                <rect x="80" y="78" width="12" height="14" rx="2" fill="#7A1F2D" />
+                <rect x="44" y="84" width="14" height="8" rx="1" />
+              </svg>
+            </div>
+
+            <div>
+              <div className="font-mono text-sm font-black text-amber-400">{referralCode}</div>
+              <p className="text-xs opacity-80 mt-1">
+                دوست شما با اسکن این کد در استودیو یا موبایل، بلافاصله{" "}
+                <span className="font-bold text-emerald-400">
+                  {formatToman(adminReferralBonusAmount)} تومان شارژ کیف پول + کوپن {adminReferralCouponPct}٪
+                </span>{" "}
+                دریافت می‌کند.
+              </p>
+            </div>
+
+            <Button
+              variant="filled"
+              onClick={() => {
+                handleCopyReferral();
+                setShowQrModal(false);
+              }}
+              className="w-full"
+            >
+              کپی لینک و بستن
+            </Button>
+          </Glass>
+        </div>
+      )}
+
+      {/* ====================================================================
+          STICKY TOP LIQUID GLASS HEADER
+         ==================================================================== */}
+      <header className="sticky top-3 z-30 mx-auto max-w-5xl px-3 sm:px-6 pt-2">
+        <Glass
+          style={{ ...glassStyle, "--lg-blur": "10px" }}
+          className="rounded-3xl px-4 py-3 flex items-center justify-between gap-2"
+        >
+          {/* Brand Logo & Title */}
+          <div
+            onClick={() => {
+              setActiveTab("home");
+              setSelectedServiceDetail(null);
+            }}
+            className="flex items-center gap-3 cursor-pointer"
+          >
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#7A1F2D] to-[#4a111a] flex items-center justify-center text-white shadow-md border border-white/25">
+              <Scissors className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <h1 className="text-base sm:text-lg font-black tracking-tight">پیرایش VIP</h1>
+                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-[#7A1F2D]/25 text-[#ff9aa9] border border-[#7A1F2D]/40">
+                  Glisse UI
+                </span>
+              </div>
+              <p className="text-[11px] opacity-70 hidden sm:block">
+                استودیو تخصصی پیرایش و گریم داماد · نسخه Liquid Glass
+              </p>
+            </div>
+          </div>
+
+          {/* Live Wallet Chip + Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveTab("wallet")}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-2xl border border-amber-400/35 bg-amber-500/15 hover:bg-amber-500/25 transition-all cursor-pointer"
+            >
+              <Wallet className="w-4 h-4 text-amber-400" />
+              <div className="text-right">
+                <div className="text-[10px] opacity-75 leading-none">کیف پول شما</div>
+                <div className="text-xs font-extrabold text-amber-400">
+                  {formatToman(walletBalance)} <span className="text-[10px]">تومان</span>
+                </div>
+              </div>
+            </button>
+
+            <Button
+              variant="glass"
+              aria-label="تنظیمات شیشه Glisse"
+              icon={<Sliders className="w-4 h-4" />}
+              onClick={() => setShowGlassTuner((s) => !s)}
+              className="!px-2.5 !py-2"
+            />
+
+            <Button
+              variant="glass"
+              aria-label="تغییر تم روشن و تاریک"
+              icon={
+                theme === "dark" ? (
+                  <Sun className="w-4 h-4 text-amber-300" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )
+              }
+              onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+              className="!px-2.5 !py-2"
+            />
+
+            <Button
+              variant={activeTab === "admin" ? "filled" : "tinted"}
+              aria-label="پنل ادمین و اتصال گیت‌هاب"
+              icon={<ShieldCheck className="w-4 h-4" />}
+              onClick={() => setActiveTab(activeTab === "admin" ? "home" : "admin")}
+              className="!px-3 !py-2 text-xs"
+            >
+              <span className="hidden md:inline">پنل ادمین و گیت‌هاب</span>
+            </Button>
+          </div>
+        </Glass>
+
+        {/* Live Glisse Liquid Glass Parameter Tuner Drawer */}
+        {showGlassTuner && (
+          <Glass
+            style={{ ...glassStyle, "--lg-blur": "14px" }}
+            className="mt-2 rounded-3xl p-4 border border-white/30"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#ff9aa9]" />
+                <span className="text-xs font-extrabold">
+                  تنظیم زنده متریال Glisse Liquid Glass (iOS 26)
+                </span>
+              </div>
+              <span className="text-[11px] opacity-70 font-mono">0kzh/glisse v0.5.0</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>شکست نور (--lg-glass-bend)</span>
+                  <span className="font-mono">{glassConfig.bend}</span>
+                </div>
+                <Slider
+                  aria-label="Glass Bend"
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  value={glassConfig.bend}
+                  onValueChange={(v) => setGlassConfig((c) => ({ ...c, bend: v }))}
+                />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>پراکندگی منشوری (--lg-glass-dispersion)</span>
+                  <span className="font-mono">{glassConfig.dispersion}</span>
+                </div>
+                <Slider
+                  aria-label="Glass Dispersion"
+                  min={0}
+                  max={2}
+                  step={0.1}
+                  value={glassConfig.dispersion}
+                  onValueChange={(v) => setGlassConfig((c) => ({ ...c, dispersion: v }))}
+                />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>ماتی شیشه (--lg-blur)</span>
+                  <span className="font-mono">{glassConfig.blur}px</span>
+                </div>
+                <Slider
+                  aria-label="Glass Blur"
+                  min={0}
+                  max={12}
+                  step={1}
+                  value={glassConfig.blur}
+                  onValueChange={(v) => setGlassConfig((c) => ({ ...c, blur: v }))}
+                />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>درخشش لبه (--lg-rim-shine)</span>
+                  <span className="font-mono">{glassConfig.rimShine}</span>
+                </div>
+                <Slider
+                  aria-label="Rim Shine"
+                  min={0}
+                  max={0.5}
+                  step={0.02}
+                  value={glassConfig.rimShine}
+                  onValueChange={(v) => setGlassConfig((c) => ({ ...c, rimShine: v }))}
+                />
+              </div>
+            </div>
+          </Glass>
+        )}
+      </header>
+
+      {/* ====================================================================
+          MAIN CONTENT AREA
+         ==================================================================== */}
+      <main className="relative z-10 mx-auto max-w-5xl px-3 sm:px-6 pt-5 pb-32 space-y-6">
+        {/* ==================================================================
+            VIEW 1: HOME (barbershop-home.html + Enhanced UX Lookbook & Live Barbers)
+           ================================================================== */}
+        {activeTab === "home" && (
+          <div className="space-y-6">
+            {/* Quick GitHub Sync Notice Bar */}
+            <Glass
+              style={{ ...glassStyle, "--lg-blur": "8px" }}
+              className="rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 border border-amber-400/35"
+            >
+              <div className="flex items-center gap-2 text-xs font-bold">
+                <Flame className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>
+                  آماده اتصال به Cloudflare Pages؟ از تب «پنل ادمین و گیت‌هاب» با یک کلیک مخزن{" "}
+                  <span className="font-mono text-amber-300">ClickFinal</span> را آپدیت کنید.
+                </span>
+              </div>
+              <Button
+                variant="filled"
+                onClick={() => {
+                  setAdminSubTab("github");
+                  setActiveTab("admin");
+                }}
+                className="!px-3 !py-1 !text-xs"
+              >
+                انتقال مستقیم به گیت‌هاب ClickFinal
+              </Button>
+            </Glass>
+
+            {/* Hero Banner with data-glisse-backdrop rich scene & floating Glass badge */}
+            <div
+              data-glisse-backdrop
+              className="relative rounded-[32px] overflow-hidden p-6 sm:p-10 border border-white/20 shadow-2xl"
+              style={{
+                background:
+                  "linear-gradient(135deg, #272727 0%, #4d131d 52%, #1a1a1a 100%)"
+              }}
+            >
+              <div className="absolute -top-12 left-12 w-56 h-56 rounded-full bg-[#7A1F2D] opacity-50 blur-2xl pointer-events-none" />
+              <div className="absolute bottom-0 right-1/3 w-64 h-64 rounded-full bg-amber-500/25 blur-2xl pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="space-y-4 max-w-xl text-white">
+                  <Glass
+                    style={{ ...glassStyle, "--lg-blur": "4px" }}
+                    className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold text-amber-300"
+                  >
+                    <Crown className="w-4 h-4" />
+                    <span>استودیو تخصصی پیرایش مردانه و داماد VIP</span>
+                  </Glass>
+
+                  <h2 className="text-2xl sm:text-4xl font-black leading-tight">
+                    استایل بی‌نقص شما، با تجربه{" "}
+                    <span className="text-amber-400">Liquid Glass</span> و کیف پول هوشمند
+                  </h2>
+                  <p className="text-sm sm:text-base text-neutral-200 leading-relaxed">
+                    نوبت خود را آنلاین رزرو کنید، دوستانتان را دعوت کنید و هر دو نفر{" "}
+                    <span className="font-extrabold text-amber-300">
+                      {formatToman(adminReferralBonusAmount)} تومان شارژ کیف پول + کد تخفیف{" "}
+                      {adminReferralCouponPct}٪
+                    </span>{" "}
+                    دریافت نمایید.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <Button
+                      variant="filled"
+                      icon={<Calendar className="w-4 h-4" />}
+                      onClick={() => {
+                        setCheckoutStep("form");
+                        setActiveTab("booking");
+                      }}
+                    >
+                      رزرو آنلاین نوبت
+                    </Button>
+                    <Button
+                      variant="glass"
+                      icon={<Gift className="w-4 h-4 text-amber-300" />}
+                      onClick={() => setActiveTab("wallet")}
+                      className="text-white"
+                    >
+                      دعوت دوستان و هدیه دوطرفه
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Free-form Glisse <Glass> Hero Loyalty Card */}
+                <Glass
+                  interactive
+                  onClick={() => setActiveTab("wallet")}
+                  style={{
+                    width: 255,
+                    borderRadius: 28,
+                    "--lg-glass-bend": glassConfig.bend,
+                    "--lg-glass-dispersion": glassConfig.dispersion,
+                    "--lg-blur": "3px",
+                    "--lg-rim-shine": glassConfig.rimShine
+                  }}
+                  className="p-5 text-white shrink-0 self-stretch md:self-auto flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-amber-300">
+                      {ambassadorTier.name}
+                    </span>
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                  </div>
+                  <div className="my-4">
+                    <div className="text-[11px] opacity-75">موجودی کیف پول دیجیتال</div>
+                    <div className="text-2xl font-black mt-0.5">
+                      {formatToman(walletBalance)}{" "}
+                      <span className="text-xs font-normal">تومان</span>
+                    </div>
+                    <div className="text-[11px] text-emerald-300 font-bold mt-1">
+                      +{ambassadorTier.cashbackPct}٪ کش‌بک خودکار هر رزرو
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px] pt-2 border-t border-white/20">
+                    <span>کد دعوت: {referralCode}</span>
+                    <span className="text-amber-300 font-bold">
+                      {coupons.filter((c) => !c.used).length.toLocaleString("fa-IR")} کوپن فعال
+                    </span>
+                  </div>
+                </Glass>
+              </div>
+            </div>
+
+            {/* NEW UX ENHANCEMENT: Live Barber Availability Strip */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-base sm:text-lg font-extrabold">
+                    وضعیت لحظه‌ای مستر باربرها
+                  </h3>
+                  <p className="text-xs opacity-70">
+                    رزرو مستقیم با نزدیک‌ترین ساعت آزاد آرایشگر دلخواه شما
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                {BARBERS.map((barb) => (
+                  <div
+                    key={barb.id}
+                    className={`rounded-3xl p-4 border flex flex-col justify-between gap-3 transition-all ${
+                      theme === "dark"
+                        ? "bg-[#1c1c1f] border-white/10 hover:border-[#7A1F2D]"
+                        : "bg-white border-black/10 shadow-sm"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#7A1F2D] to-amber-700 text-white font-black flex items-center justify-center text-sm">
+                          {barb.name.slice(0, 2)}
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-sm">{barb.name}</div>
+                          <div className="text-[11px] opacity-70">{barb.role}</div>
+                        </div>
+                      </div>
+                      <span className="text-xs font-bold text-amber-400 flex items-center gap-0.5">
+                        <Star className="w-3.5 h-3.5 fill-amber-400" />
+                        {barb.rating}
+                      </span>
+                    </div>
+
+                    <div className="text-[11px] opacity-80 bg-black/5 dark:bg-white/5 rounded-xl px-3 py-1.5">
+                      تخصص: {barb.specialty}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-[11px] font-bold text-emerald-400">
+                        اولین نوبت آزاد: {barb.nextFree}
+                      </span>
+                      <Button
+                        variant="filled"
+                        onClick={() => {
+                          setBookingForm((f) => ({ ...f, barberId: barb.id }));
+                          setCheckoutStep("form");
+                          setActiveTab("booking");
+                        }}
+                        className="!px-3 !py-1.5 !text-xs"
+                      >
+                        رزرو با این آرایشگر
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Featured Services Section */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-extrabold">خدمات برگزیده پیرایش</h3>
+                  <p className="text-xs opacity-70">محبوب‌ترین پکیج‌های اصلاح، فیشیال و کراتین</p>
+                </div>
+                <Button
+                  variant="glass"
+                  onClick={() => setActiveTab("services")}
+                  className="!text-xs"
+                >
+                  مشاهده همه خدمات
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                {services.slice(0, 4).map((srv) => {
+                  const isFav = favoriteServices.includes(srv.id);
+                  return (
+                    <div
+                      key={srv.id}
+                      className={`rounded-3xl p-4 border transition-all flex flex-col justify-between ${
+                        theme === "dark"
+                          ? "bg-[#1c1c1f] border-white/10 hover:border-[#7A1F2D]/60"
+                          : "bg-white border-black/10 hover:border-[#7A1F2D] shadow-sm"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#7A1F2D]/15 text-[#7A1F2D] dark:text-[#ff9aa9]">
+                            {srv.badge}
+                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-bold flex items-center gap-1 text-amber-500">
+                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                              {srv.rating}
+                            </span>
+                            <button
+                              type="button"
+                              aria-label="افزودن به علاقه‌مندی"
+                              onClick={() => toggleFavorite(srv.id)}
+                              className="p-1 rounded-full hover:bg-white/10 cursor-pointer"
+                            >
+                              <Heart
+                                className={`w-3.5 h-3.5 ${
+                                  isFav ? "fill-rose-500 text-rose-500" : "opacity-50"
+                                }`}
+                              />
+                            </button>
+                          </div>
+                        </div>
+                        <h4 className="font-extrabold text-sm sm:text-base mb-1">{srv.title}</h4>
+                        <p className="text-xs opacity-75 leading-relaxed mb-4">{srv.shortDesc}</p>
+                      </div>
+
+                      <div className="pt-3 border-t border-current/10 flex items-center justify-between">
+                        <div>
+                          <div className="text-[10px] opacity-65">هزینه سرویس</div>
+                          <div className="text-sm font-black text-[#7A1F2D] dark:text-amber-400">
+                            {formatToman(srv.price)} تومان
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Button
+                            variant="glass"
+                            onClick={() => {
+                              setSelectedServiceDetail(srv);
+                              setActiveTab("services");
+                            }}
+                            className="!px-2.5 !py-1.5 !text-xs"
+                          >
+                            جزئیات
+                          </Button>
+                          <Button
+                            variant="filled"
+                            onClick={() => {
+                              setBookingForm((f) => ({ ...f, serviceId: srv.id }));
+                              setCheckoutStep("form");
+                              setActiveTab("booking");
+                            }}
+                            className="!px-3 !py-1.5 !text-xs"
+                          >
+                            رزرو
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* NEW UX ENHANCEMENT: Interactive Style Lookbook */}
+            <div className="space-y-3">
+              <div>
+                <h3 className="text-lg font-extrabold">ژورنال استایل و گریم اختصاصی</h3>
+                <p className="text-xs opacity-70">
+                  استایل مورد نظر خود را انتخاب کنید تا سرویس مرتبط برایتان تنظیم شود
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {STYLE_LOOKBOOK.map((item) => (
+                  <div
+                    key={item.id}
+                    data-glisse-backdrop
+                    className={`rounded-3xl p-5 border border-white/20 bg-gradient-to-br ${item.gradient} text-white flex flex-col justify-between min-h-[170px]`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md">
+                        {item.popularity}
+                      </span>
+                      <span className="text-xs opacity-80">{item.duration}</span>
+                    </div>
+                    <div className="my-3">
+                      <h4 className="text-base font-black">{item.name}</h4>
+                      <p className="text-xs text-neutral-200 mt-1">{item.tag}</p>
+                    </div>
+                    <Button
+                      variant="glass"
+                      onClick={() => {
+                        setBookingForm((f) => ({ ...f, serviceId: item.serviceId }));
+                        setCheckoutStep("form");
+                        setActiveTab("booking");
+                      }}
+                      className="w-full !text-xs text-white"
+                    >
+                      رزرو این استایل
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Groom Packages Highlight Card (`services.html#groom` from Clickv2) */}
+            <div className="rounded-3xl p-5 sm:p-6 border border-amber-500/30 bg-gradient-to-l from-[#272727] via-[#3a1620] to-[#1a1a1a] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400">
+                  <Crown className="w-4 h-4" />
+                  <span>پکیج‌های اختصاصی داماد (Silver · Gold · Royal VIP)</span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-black">
+                  درخشش در مهم‌ترین شب زندگی با پکیج رویال داماد
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-300">
+                  شامل سوییت اختصاصی، گریم سینمایی ۴۸ ساعته، فیشیال ۵ مرحله‌ای و کراتین احیا — امکان کسر از کیف پول و کد تخفیف معرفی دوستان.
+                </p>
+              </div>
+              <Button
+                variant="filled"
+                onClick={() => {
+                  setServiceCategory("groom");
+                  setSelectedServiceDetail(null);
+                  setActiveTab("services");
+                }}
+                className="shrink-0"
+              >
+                مشاهده و مقایسه پکیج‌های داماد
+              </Button>
+            </div>
+
+            {/* Testimonials & Why Us Grid (from Clickv2) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {TESTIMONIALS.map((t) => (
+                <div
+                  key={t.id}
+                  className={`rounded-3xl p-5 border space-y-2 ${
+                    theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-extrabold text-sm">{t.user}</div>
+                      <div className="text-[11px] text-amber-500 font-bold">{t.service}</div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {Array.from({ length: t.rating }).map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-xs opacity-80 leading-relaxed">«{t.comment}»</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ==================================================================
+            VIEW 2: SERVICES & PACKAGE COMPARISON (`barbershop-services.html` & `serviceDetail.html`)
+           ================================================================== */}
+        {activeTab === "services" && (
+          <div className="space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-black">منوی خدمات و پکیج‌های داماد</h2>
+                <p className="text-xs opacity-75">
+                  انتخاب سرویس با فیلتر سریع Glisse SegmentedControl و جدول مقایسه پکیج‌های داماد
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <SegmentedControl
+                  aria-label="دسته‌بندی خدمات"
+                  items={[
+                    { value: "main", label: "خدمات اصلی پیرایش (۴)" },
+                    { value: "groom", label: "پکیج‌های ویژه داماد (۳)" }
+                  ]}
+                  value={serviceCategory}
+                  onValueChange={(v) => {
+                    setServiceCategory(v);
+                    setSelectedServiceDetail(null);
+                  }}
+                />
+                {serviceCategory === "groom" && (
+                  <Button
+                    variant={compareMode ? "filled" : "glass"}
+                    icon={<Layers className="w-4 h-4" />}
+                    onClick={() => setCompareMode((m) => !m)}
+                    className="!text-xs"
+                  >
+                    {compareMode ? "بستن جدول مقایسه" : "مقایسه ۳ پکیج داماد"}
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            <Input
+              type="search"
+              aria-label="جستجوی خدمات"
+              placeholder="جستجوی سرویس (مثلاً: VIP، فیشیال، داماد، کراتین)..."
+              icon={<Search className="w-4 h-4" />}
+              value={searchQuery}
+              onValueChange={setSearchQuery}
+            />
+
+            {/* Groom Package Side-by-Side Comparison Matrix */}
+            {serviceCategory === "groom" && compareMode && (
+              <Glass
+                style={{ ...glassStyle, "--lg-blur": "10px" }}
+                className="rounded-3xl p-5 border border-amber-400/40 overflow-x-auto"
+              >
+                <h3 className="text-base font-black mb-3 text-amber-400">
+                  مقایسه جامع پکیج‌های داماد (نقره‌ای، طلایی و رویال VIP)
+                </h3>
+                <table className="w-full text-right text-xs border-collapse">
+                  <thead>
+                    <tr className="border-b border-white/15">
+                      <th className="py-2.5 px-3">ویژگی پکیج</th>
+                      <th className="py-2.5 px-3">داماد نقره‌ای (Silver)</th>
+                      <th className="py-2.5 px-3 text-amber-300">داماد طلایی (Gold)</th>
+                      <th className="py-2.5 px-3 text-rose-300">رویال داماد (Royal VIP)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/10">
+                    <tr>
+                      <td className="py-2.5 px-3 font-bold">هزینه کل پکیج</td>
+                      <td className="py-2.5 px-3">۲,۵۰۰,۰۰۰ تومان</td>
+                      <td className="py-2.5 px-3 font-bold text-amber-300">۳,۸۰۰,۰۰۰ تومان</td>
+                      <td className="py-2.5 px-3 font-black text-emerald-400">۵,۵۰۰,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2.5 px-3 font-bold">پاکسازی و فیشیال</td>
+                      <td className="py-2.5 px-3">تک‌مرحله‌ای پایه</td>
+                      <td className="py-2.5 px-3">چندمرحله‌ای + ماسک طلا</td>
+                      <td className="py-2.5 px-3">فیشیال VIP ۵ مرحله‌ای</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2.5 px-3 font-bold">کراتین و احیای مو</td>
+                      <td className="py-2.5 px-3 opacity-50">—</td>
+                      <td className="py-2.5 px-3">آرگان تراپی</td>
+                      <td className="py-2.5 px-3 text-emerald-400 font-bold">کراتین کامل برزیلی</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2.5 px-3 font-bold">سوییت اختصاصی VIP</td>
+                      <td className="py-2.5 px-3 opacity-50">—</td>
+                      <td className="py-2.5 px-3">پذیرایی ویژه</td>
+                      <td className="py-2.5 px-3 text-emerald-400 font-bold">سوییت اختصاصی کامل</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </Glass>
+            )}
+
+            {/* Service Detail Modal/Drawer */}
+            {selectedServiceDetail && (
+              <Glass
+                style={{ ...glassStyle, "--lg-blur": "10px" }}
+                className="rounded-3xl p-5 sm:p-6 border-2 border-[#7A1F2D]"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-[#7A1F2D] text-white">
+                      {selectedServiceDetail.badge}
+                    </span>
+                    <h3 className="text-xl font-black mt-2">{selectedServiceDetail.title}</h3>
+                    <p className="text-xs sm:text-sm opacity-80 mt-1">
+                      {selectedServiceDetail.shortDesc}
+                    </p>
+                  </div>
+                  <Button
+                    variant="glass"
+                    onClick={() => setSelectedServiceDetail(null)}
+                    className="!text-xs"
+                  >
+                    بستن جزئیات
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                  <div className="rounded-2xl p-4 bg-black/15 dark:bg-white/5 border border-white/15 space-y-2">
+                    <div className="text-xs font-extrabold text-amber-400">
+                      موارد شامل در این پکیج:
+                    </div>
+                    <ul className="space-y-1.5 text-xs">
+                      {selectedServiceDetail.includes.map((inc) => (
+                        <li key={inc} className="flex items-center gap-2">
+                          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                          <span>{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-2xl p-4 bg-black/15 dark:bg-white/5 border border-white/15 flex flex-col justify-between space-y-3">
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex justify-between">
+                        <span className="opacity-75">مدت زمان اجرا:</span>
+                        <span className="font-bold">{selectedServiceDetail.duration}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="opacity-75">مبلغ کل سرویس:</span>
+                        <span className="font-extrabold">
+                          {formatToman(selectedServiceDetail.price)} تومان
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="opacity-75">بیعانه رزرو آنلاین:</span>
+                        <span className="font-bold text-amber-400">
+                          {formatToman(selectedServiceDetail.deposit)} تومان
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="opacity-75">
+                          کش‌بک هدیه به کیف پول ({ambassadorTier.cashbackPct}٪):
+                        </span>
+                        <span className="font-bold text-emerald-400">
+                          +
+                          {formatToman(
+                            Math.round(
+                              (selectedServiceDetail.price * ambassadorTier.cashbackPct) / 100
+                            )
+                          )}{" "}
+                          تومان
+                        </span>
+                      </div>
+                    </div>
+
+                    <Button
+                      variant="filled"
+                      icon={<Calendar className="w-4 h-4" />}
+                      onClick={() => {
+                        setBookingForm((f) => ({ ...f, serviceId: selectedServiceDetail.id }));
+                        setCheckoutStep("form");
+                        setActiveTab("booking");
+                      }}
+                      className="w-full"
+                    >
+                      انتخاب و ادامه رزرو این سرویس
+                    </Button>
+                  </div>
+                </div>
+              </Glass>
+            )}
+
+            {/* Services Cards List */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredServices.map((srv) => (
+                <div
+                  key={srv.id}
+                  className={`rounded-3xl p-5 border flex flex-col justify-between transition-all ${
+                    theme === "dark"
+                      ? "bg-[#1c1c1f] border-white/10 hover:border-white/25"
+                      : "bg-white border-black/10 shadow-sm"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#7A1F2D]/20 text-[#7A1F2D] dark:text-[#ff9aa9]">
+                        {srv.badge}
+                      </span>
+                      <span className="text-xs opacity-70 flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        {srv.duration}
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-black mb-1">{srv.title}</h3>
+                    <p className="text-xs opacity-75 leading-relaxed mb-3">{srv.shortDesc}</p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {srv.includes.slice(0, 2).map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[11px] px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5"
+                        >
+                          • {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-current/10 flex items-center justify-between gap-2">
+                    <div>
+                      <div className="text-[11px] opacity-65">
+                        بیعانه: {formatToman(srv.deposit)} تومان
+                      </div>
+                      <div className="text-base font-black text-[#7A1F2D] dark:text-amber-400">
+                        {formatToman(srv.price)} <span className="text-xs">تومان</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="glass"
+                        onClick={() => setSelectedServiceDetail(srv)}
+                        className="!text-xs"
+                      >
+                        مشاهده جزئیات
+                      </Button>
+                      <Button
+                        variant="filled"
+                        onClick={() => {
+                          setBookingForm((f) => ({ ...f, serviceId: srv.id }));
+                          setCheckoutStep("form");
+                          setActiveTab("booking");
+                        }}
+                        className="!text-xs"
+                      >
+                        رزرو نوبت
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ==================================================================
+            VIEW 3: BOOKING, PAYMENT & CONFIRMATION (`barbershop-booking.html`, `payment.html`, `confirmation.html`)
+           ================================================================== */}
+        {activeTab === "booking" && (
+          <div className="space-y-6">
+            <Glass
+              style={{ ...glassStyle, "--lg-blur": "8px" }}
+              className="rounded-3xl p-4 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-bold">
+                <button
+                  type="button"
+                  onClick={() => setCheckoutStep("form")}
+                  className={`px-3 py-1.5 rounded-xl cursor-pointer ${
+                    checkoutStep === "form"
+                      ? "bg-[#7A1F2D] text-white"
+                      : "opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  ۱. انتخاب سرویس و زمان
+                </button>
+                <span>←</span>
+                <button
+                  type="button"
+                  onClick={() => setCheckoutStep("payment")}
+                  className={`px-3 py-1.5 rounded-xl cursor-pointer ${
+                    checkoutStep === "payment"
+                      ? "bg-[#7A1F2D] text-white"
+                      : "opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  ۲. کیف پول، تخفیف و درگاه زرین‌پال
+                </button>
+                <span>←</span>
+                <span
+                  className={`px-3 py-1.5 rounded-xl ${
+                    checkoutStep === "confirmation" ? "bg-emerald-600 text-white" : "opacity-60"
+                  }`}
+                >
+                  ۳. تایید نهایی و کش‌بک
+                </span>
+              </div>
+            </Glass>
+
+            {checkoutStep === "form" && (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                <div className="lg:col-span-2 space-y-5">
+                  <div
+                    className={`rounded-3xl p-5 border space-y-4 ${
+                      theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                    }`}
+                  >
+                    <h3 className="text-base font-black">۱. انتخاب سرویس یا پکیج داماد</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {services.map((s) => {
+                        const active = bookingForm.serviceId === s.id;
+                        return (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => setBookingForm((f) => ({ ...f, serviceId: s.id }))}
+                            className={`text-right p-3.5 rounded-2xl border transition-all cursor-pointer ${
+                              active
+                                ? "border-[#7A1F2D] bg-[#7A1F2D]/15 shadow-md"
+                                : "border-current/10 hover:border-current/30"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between font-bold text-xs sm:text-sm">
+                              <span>{s.title}</span>
+                              {active && (
+                                <Check className="w-4 h-4 text-[#7A1F2D] dark:text-amber-400" />
+                              )}
+                            </div>
+                            <div className="flex items-center justify-between text-[11px] opacity-75 mt-1.5">
+                              <span>{s.duration}</span>
+                              <span className="font-extrabold text-[#7A1F2D] dark:text-amber-400">
+                                {formatToman(s.price)} تومان
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Express VIP Add-on Switch */}
+                    <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-between gap-3">
+                      <div>
+                        <div className="text-xs font-extrabold text-amber-400">
+                          افزودن ماسک طلا و آبرسانی اکسپرس VIP (+۲۵۰,۰۰۰ تومان)
+                        </div>
+                        <div className="text-[11px] opacity-75">
+                          اجرای همزمان با سرویس اصلی بدون افزایش زمان انتظار
+                        </div>
+                      </div>
+                      <Switch
+                        aria-label="افزودن ماسک طلا"
+                        checked={bookingForm.AddonFacial}
+                        onCheckedChange={(v) =>
+                          setBookingForm((f) => ({ ...f, AddonFacial: v }))
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* 2. Choose Barber */}
+                  <div
+                    className={`rounded-3xl p-5 border ${
+                      theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                    }`}
+                  >
+                    <h3 className="text-base font-black mb-3">۲. انتخاب آرایشگر (مستر باربر)</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      {BARBERS.map((b) => {
+                        const active = bookingForm.barberId === b.id;
+                        return (
+                          <button
+                            key={b.id}
+                            type="button"
+                            onClick={() => setBookingForm((f) => ({ ...f, barberId: b.id }))}
+                            className={`p-3.5 rounded-2xl border text-right transition-all cursor-pointer ${
+                              active
+                                ? "border-[#7A1F2D] bg-[#7A1F2D]/15"
+                                : "border-current/10 hover:border-current/30"
+                            }`}
+                          >
+                            <div className="font-extrabold text-sm">{b.name}</div>
+                            <div className="text-[11px] opacity-75 mt-0.5">{b.role}</div>
+                            <div className="text-[10px] text-amber-500 font-bold mt-1">{b.exp}</div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 3. Choose Date & Time */}
+                  <div
+                    className={`rounded-3xl p-5 border space-y-4 ${
+                      theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-black">۳. انتخاب روز (آبان ۱۴۰۵) و ساعت</h3>
+                      <span className="text-xs opacity-70">
+                        روز انتخاب‌شده: {bookingForm.day.toLocaleString("fa-IR")} آبان
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-6 sm:grid-cols-10 gap-1.5">
+                      {PERSIAN_DAYS.map((d) => {
+                        const disabled = d < 15 || d === 21;
+                        const active = bookingForm.day === d;
+                        return (
+                          <button
+                            key={d}
+                            type="button"
+                            disabled={disabled}
+                            onClick={() => setBookingForm((f) => ({ ...f, day: d }))}
+                            className={`py-2 rounded-xl text-xs font-bold transition-all ${
+                              disabled
+                                ? "opacity-25 cursor-not-allowed"
+                                : active
+                                ? "bg-[#7A1F2D] text-white shadow cursor-pointer scale-105"
+                                : "bg-black/5 dark:bg-white/5 hover:bg-[#7A1F2D]/20 cursor-pointer"
+                            }`}
+                          >
+                            {d.toLocaleString("fa-IR")}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="pt-2">
+                      <div className="text-xs font-bold mb-2">ساعت‌های قابل رزرو:</div>
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        {TIME_SLOTS.map((slot) => {
+                          const active = bookingForm.time === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => setBookingForm((f) => ({ ...f, time: slot }))}
+                              className={`py-2 rounded-xl text-xs font-extrabold border transition-all cursor-pointer ${
+                                active
+                                  ? "bg-[#7A1F2D] text-white border-[#7A1F2D]"
+                                  : "border-current/15 hover:border-[#7A1F2D]"
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sticky Summary Card */}
+                <div className="space-y-4">
+                  <Glass
+                    style={{ ...glassStyle, "--lg-blur": "10px" }}
+                    className="rounded-3xl p-5 space-y-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-black">خلاصه نوبت شما</h3>
+                      <span className="text-xs font-bold text-amber-400">پیرایش VIP</span>
+                    </div>
+
+                    <div className="space-y-2.5 text-xs border-y border-white/15 py-3">
+                      <div className="flex justify-between">
+                        <span className="opacity-75">سرویس:</span>
+                        <span className="font-extrabold">{selectedService.title}</span>
+                      </div>
+                      {bookingForm.AddonFacial && (
+                        <div className="flex justify-between text-amber-400">
+                          <span>افزودنی VIP:</span>
+                          <span className="font-bold">+ماسک طلا (۲۵۰,۰۰۰ ت)</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between">
+                        <span className="opacity-75">آرایشگر:</span>
+                        <span className="font-bold">{selectedBarber.name}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="opacity-75">تاریخ و ساعت:</span>
+                        <span className="font-bold">
+                          {bookingForm.day.toLocaleString("fa-IR")} آبان · ساعت {bookingForm.time}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="opacity-75">مبلغ کل:</span>
+                        <span className="font-bold">
+                          {formatToman(totalServiceWithAddon)} تومان
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="text-xs font-bold">نحوه تسویه آنلاین:</div>
+                      <SegmentedControl
+                        aria-label="نحوه پرداخت"
+                        className="w-full"
+                        items={[
+                          {
+                            value: "deposit",
+                            label: `بیعانه (${formatToman(depositWithAddon)})`
+                          },
+                          {
+                            value: "full",
+                            label: `تسویه کامل (${formatToman(totalServiceWithAddon)})`
+                          }
+                        ]}
+                        value={bookingForm.payMode}
+                        onValueChange={(v) => setBookingForm((f) => ({ ...f, payMode: v }))}
+                      />
+                    </div>
+
+                    <div className="rounded-2xl p-3 bg-emerald-500/15 border border-emerald-400/30 text-xs space-y-1">
+                      <div className="font-extrabold text-emerald-400 flex items-center gap-1.5">
+                        <Wallet className="w-4 h-4" />
+                        <span>موجودی کیف پول: {formatToman(walletBalance)} تومان</span>
+                      </div>
+                      <p className="text-[11px] opacity-85">
+                        در مرحله بعد می‌توانید هزینه را از کیف پول یا کد تخفیف معرفی دوستان کسر کنید.
+                      </p>
+                    </div>
+
+                    <Button
+                      variant="filled"
+                      onClick={() => setCheckoutStep("payment")}
+                      className="w-full !py-3"
+                    >
+                      ادامه به پرداخت و اعمال کیف پول
+                    </Button>
+                  </Glass>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 2: WALLET DEDUCTION, COUPON & ZARINPAL MOCK GATEWAY */}
+            {checkoutStep === "payment" && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <Glass
+                    style={{ ...glassStyle, "--lg-blur": "10px" }}
+                    className="rounded-3xl p-5 space-y-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Wallet className="w-5 h-5 text-amber-400" />
+                        <h3 className="text-base font-black">استفاده از کیف پول و کد تخفیف</h3>
+                      </div>
+                      <Switch
+                        aria-label="استفاده از موجودی کیف پول"
+                        checked={useWalletAtCheckout}
+                        onCheckedChange={setUseWalletAtCheckout}
+                      />
+                    </div>
+
+                    {useWalletAtCheckout && (
+                      <div className="space-y-2 pt-1">
+                        <div className="flex justify-between text-xs">
+                          <span>مقدار کسر از کیف پول (Glisse Slider):</span>
+                          <span className="font-extrabold text-amber-400">
+                            {formatToman(effectiveWalletDeduction)} از {formatToman(walletBalance)}{" "}
+                            تومان
+                          </span>
+                        </div>
+                        <Slider
+                          aria-label="مبلغ کسر از کیف پول"
+                          min={0}
+                          max={Math.max(0, maxUsableWallet)}
+                          step={10000}
+                          value={effectiveWalletDeduction}
+                          onValueChange={setWalletSliderAmount}
+                        />
+                      </div>
+                    )}
+
+                    <div className="pt-3 border-t border-white/15 space-y-2.5">
+                      <div className="text-xs font-bold">کد تخفیف معرفی دوستان یا کوپن هدیه:</div>
+                      <div className="flex gap-2">
+                        <Input
+                          type="text"
+                          aria-label="کد تخفیف"
+                          placeholder="مثلاً FRIEND30 یا WELCOME150"
+                          icon={<Ticket className="w-4 h-4" />}
+                          value={couponInput}
+                          onValueChange={setCouponInput}
+                          className="flex-1"
+                        />
+                        <Button variant="filled" onClick={() => handleApplyCouponCode()}>
+                          اعمال کد
+                        </Button>
+                      </div>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {coupons
+                          .filter((c) => !c.used)
+                          .map((c) => (
+                            <button
+                              key={c.code}
+                              type="button"
+                              onClick={() => handleApplyCouponCode(c.code)}
+                              className={`text-[11px] px-2.5 py-1 rounded-xl border cursor-pointer transition-all ${
+                                appliedCoupon?.code === c.code
+                                  ? "bg-emerald-500/25 border-emerald-400 text-emerald-300 font-bold"
+                                  : "border-white/20 bg-white/5 hover:bg-white/15"
+                              }`}
+                            >
+                              {c.code} (
+                              {c.type === "percent" ? `${c.value}٪` : `${formatToman(c.value)} ت`})
+                            </button>
+                          ))}
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl p-4 bg-black/20 border border-white/15 space-y-2 text-xs">
+                      <div className="flex justify-between">
+                        <span>
+                          مبلغ پایه ({bookingForm.payMode === "deposit" ? "بیعانه" : "کل سرویس"}):
+                        </span>
+                        <span className="font-bold">{formatToman(basePayable)} تومان</span>
+                      </div>
+                      <div className="flex justify-between text-emerald-400">
+                        <span>
+                          کسر کوپن تخفیف {appliedCoupon ? `(${appliedCoupon.code})` : ""}:
+                        </span>
+                        <span className="font-bold">-{formatToman(couponDiscountAmount)} تومان</span>
+                      </div>
+                      <div className="flex justify-between text-amber-400">
+                        <span>کسر از موجودی کیف پول:</span>
+                        <span className="font-bold">
+                          -{formatToman(effectiveWalletDeduction)} تومان
+                        </span>
+                      </div>
+                      <div className="pt-2 border-t border-white/15 flex justify-between text-sm font-black">
+                        <span>مبلغ قابل پرداخت در درگاه:</span>
+                        <span className="text-amber-300">
+                          {formatToman(finalGatewayPayable)} تومان
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-[11px] text-emerald-400 pt-1">
+                        <span>پاداش کش‌بک {ambassadorTier.cashbackPct}٪ پس از ثبت رزرو:</span>
+                        <span>+{formatToman(earnedCashback)} تومان شارژ کیف پول</span>
+                      </div>
+                    </div>
+                  </Glass>
+                </div>
+
+                {/* ZarinPal Mock Gateway */}
+                <div
+                  className={`rounded-3xl overflow-hidden border shadow-xl ${
+                    theme === "dark" ? "bg-[#1c1c1f] border-white/15" : "bg-white border-black/10"
+                  }`}
+                >
+                  <div
+                    className="p-4 text-[#1a1a1a] flex items-center justify-between"
+                    style={{
+                      background: "linear-gradient(135deg, #FFD54F 0%, #FFC107 100%)"
+                    }}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <CreditCard className="w-5 h-5" />
+                      <div>
+                        <div className="text-sm font-black">درگاه پرداخت امن زرین‌پال</div>
+                        <div className="text-[11px] font-semibold opacity-80">
+                          پذیرنده: استودیو پیرایش VIP (ClickFinal)
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-xs font-extrabold px-2.5 py-1 rounded-xl bg-black/15">
+                      {formatToman(finalGatewayPayable)} تومان
+                    </span>
+                  </div>
+
+                  <div className="p-5 space-y-4">
+                    {finalGatewayPayable === 0 ? (
+                      <div className="rounded-2xl p-5 bg-emerald-500/15 border border-emerald-400/40 text-center space-y-2">
+                        <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                        <div className="text-sm font-black">
+                          کل مبلغ از کیف پول و کد تخفیف شما پوشش داده شد!
+                        </div>
+                        <p className="text-xs opacity-80">
+                          نیازی به پرداخت بانکی نیست؛ با یک کلیک رزرو خود را نهایی کنید.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        <div>
+                          <label className="block text-xs font-bold mb-1">شماره کارت شتاب</label>
+                          <Input
+                            type="text"
+                            aria-label="شماره کارت"
+                            value={mockCardNumber}
+                            onValueChange={setMockCardNumber}
+                            icon={<CreditCard className="w-4 h-4" />}
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold mb-1">CVV2</label>
+                            <Input
+                              type="text"
+                              aria-label="CVV2"
+                              value={mockCvv2}
+                              onValueChange={setMockCvv2}
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold mb-1">تاریخ انقضا</label>
+                            <Input
+                              type="text"
+                              aria-label="تاریخ انقضا"
+                              value="۰۵ / ۰۸"
+                              onValueChange={() => {}}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between text-xs pt-2 border-t border-current/10">
+                      <span>شبیه‌سازی خطای پرداخت (#fail در Clickv2):</span>
+                      <Switch
+                        aria-label="شبیه‌سازی خطای درگاه"
+                        checked={paymentFailSim}
+                        onCheckedChange={setPaymentFailSim}
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2.5 pt-2">
+                      <Button
+                        variant="filled"
+                        onClick={handleCompletePayment}
+                        className="flex-1 !py-3"
+                      >
+                        {finalGatewayPayable === 0
+                          ? "تایید و ثبت آنی با کیف پول"
+                          : `پرداخت ${formatToman(finalGatewayPayable)} تومان و ثبت نوبت`}
+                      </Button>
+                      <Button variant="glass" onClick={() => setCheckoutStep("form")}>
+                        بازگشت
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 3: CONFIRMATION */}
+            {checkoutStep === "confirmation" && lastConfirmedBooking && (
+              <Glass
+                style={{ ...glassStyle, "--lg-blur": "10px" }}
+                className="rounded-3xl p-6 sm:p-8 max-w-xl mx-auto text-center space-y-5"
+              >
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center mx-auto text-emerald-400">
+                  <CheckCircle2 className="w-9 h-9" />
+                </div>
+                <div>
+                  <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300">
+                    کد پیگیری: {lastConfirmedBooking.id}
+                  </span>
+                  <h3 className="text-2xl font-black mt-2">نوبت شما با موفقیت ثبت شد!</h3>
+                  <p className="text-xs sm:text-sm opacity-80 mt-1">
+                    پیامک تایید رزرو و لوکیشن استودیو پیرایش VIP برای شما ارسال شد.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl p-4 bg-black/20 border border-white/15 text-xs space-y-2 text-right">
+                  <div className="flex justify-between">
+                    <span className="opacity-75">سرویس انتخاب‌شده:</span>
+                    <span className="font-bold">{lastConfirmedBooking.serviceTitle}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="opacity-75">آرایشگر:</span>
+                    <span className="font-bold">{lastConfirmedBooking.barber}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="opacity-75">زمان نوبت:</span>
+                    <span className="font-bold">
+                      {lastConfirmedBooking.date} · ساعت {lastConfirmedBooking.time}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-amber-400">
+                    <span>کسر شده از کیف پول:</span>
+                    <span className="font-bold">
+                      {formatToman(lastConfirmedBooking.walletUsed)} تومان
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-emerald-400">
+                    <span>پاداش کش‌بک واریزشده به کیف پول شما:</span>
+                    <span className="font-extrabold">
+                      +{formatToman(lastConfirmedBooking.cashbackEarned)} تومان
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <Button
+                    variant="filled"
+                    icon={<Gift className="w-4 h-4" />}
+                    onClick={() => setActiveTab("wallet")}
+                  >
+                    مشاهده کیف پول و دعوت دوستان
+                  </Button>
+                  <Button variant="glass" onClick={() => setActiveTab("profile")}>
+                    نوبت‌های من ({bookings.length.toLocaleString("fa-IR")})
+                  </Button>
+                </div>
+              </Glass>
+            )}
+          </div>
+        )}
+
+        {/* ==================================================================
+            VIEW 4: REFERRAL & DIGITAL WALLET HUB (Enhanced with QR + Ambassador Tier)
+           ================================================================== */}
+        {activeTab === "wallet" && (
+          <div className="space-y-6">
+            <div
+              data-glisse-backdrop
+              className="rounded-[32px] p-6 sm:p-8 border border-white/20 text-white relative overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(135deg, #4a121b 0%, #272727 55%, #18181b 100%)"
+              }}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                {/* Liquid Glass Digital Wallet Card */}
+                <div className="lg:col-span-5">
+                  <Glass
+                    style={{
+                      ...glassStyle,
+                      borderRadius: 28,
+                      "--lg-blur": "6px"
+                    }}
+                    className="p-6 space-y-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Wallet className="w-5 h-5 text-amber-300" />
+                        <span className="text-xs font-extrabold text-amber-300">
+                          کیف پول دیجیتال پیرایش VIP
+                        </span>
+                      </div>
+                      <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 font-bold">
+                        {ambassadorTier.name}
+                      </span>
+                    </div>
+
+                    <div>
+                      <div className="text-xs opacity-75">موجودی قابل استفاده در رزروها</div>
+                      <div className="text-3xl sm:text-4xl font-black mt-1 text-white">
+                        {formatToman(walletBalance)}{" "}
+                        <span className="text-sm font-normal text-amber-300">تومان</span>
+                      </div>
+                    </div>
+
+                    {/* Ambassador Tier Progress Bar */}
+                    <div className="space-y-1.5 pt-2 border-t border-white/15 text-xs">
+                      <div className="flex justify-between">
+                        <span className="opacity-80">
+                          پیشرفت سطح سفیر ({referralCount.toLocaleString("fa-IR")} دعوت موفق)
+                        </span>
+                        <span className="text-amber-300 font-bold">
+                          کش‌بک فعلی: {ambassadorTier.cashbackPct}٪
+                        </span>
+                      </div>
+                      <div className="h-2 w-full rounded-full bg-black/40 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-l from-amber-400 to-rose-500 rounded-full transition-all duration-500"
+                          style={{ width: `${ambassadorTier.progress}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Quick Top-Up Buttons */}
+                    <div className="space-y-1.5 pt-2 border-t border-white/15">
+                      <div className="text-[11px] opacity-80">شارژ سریع کیف پول:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {[100000, 250000, 500000].map((amt) => (
+                          <Button
+                            key={amt}
+                            variant="glass"
+                            onClick={() => handleTopUpWallet(amt)}
+                            className="!px-3 !py-1.5 !text-xs text-white"
+                          >
+                            +{formatToman(amt)} ت
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  </Glass>
+                </div>
+
+                {/* Referral Program Copy & Share Box */}
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-extrabold">
+                    <Gift className="w-4 h-4" />
+                    <span>سیستم دعوت دوطرفه (برنده - برنده)</span>
+                  </div>
+
+                  <h2 className="text-xl sm:text-2xl font-black">
+                    دوستت رو دعوت کن؛ هر دو نفر{" "}
+                    <span className="text-amber-400">
+                      {formatToman(adminReferralBonusAmount)} تومان شارژ کیف پول + کوپن{" "}
+                      {adminReferralCouponPct}٪
+                    </span>{" "}
+                    بگیرید!
+                  </h2>
+
+                  <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed">
+                    با اشتراک‌گذاری کد یا لینک اختصاصی خود، به محض ثبت‌نام یا اولین رزرو دوستتان، هم کیف پول شما و هم کیف پول دوستتان شارژ می‌شود و یک کد تخفیف دوطرفه برایتان صادر می‌گردد.
+                  </p>
+
+                  <div className="space-y-1.5">
+                    <span className="text-xs font-bold text-neutral-300">
+                      نوع پاداش انتخابی شما هنگام دعوت دوستان:
+                    </span>
+                    <SegmentedControl
+                      aria-label="نوع پاداش دعوت"
+                      items={[
+                        { value: "both", label: "شارژ کیف پول + کوپن ۳۰٪ (پیشنهادی)" },
+                        { value: "wallet", label: "فقط شارژ نقدی کیف پول" },
+                        { value: "coupon", label: "فقط کوپن تخفیف" }
+                      ]}
+                      value={referralRewardType}
+                      onValueChange={setReferralRewardType}
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-1">
+                    <div className="flex-1 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-black/35 border border-white/20 font-mono text-xs sm:text-sm">
+                      <span className="truncate">
+                        https://clickfinal.pages.dev/?ref={referralCode}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-lg bg-[#7A1F2D] text-white font-bold text-xs ml-2">
+                        {referralCode}
+                      </span>
+                    </div>
+                    <Button
+                      variant="filled"
+                      icon={copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      onClick={handleCopyReferral}
+                    >
+                      {copiedRef ? "کپی شد!" : "کپی لینک دعوت"}
+                    </Button>
+                    <Button
+                      variant="glass"
+                      icon={<QrCode className="w-4 h-4 text-amber-300" />}
+                      onClick={() => setShowQrModal(true)}
+                      className="text-white"
+                    >
+                      QR کد
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Referral Simulator + Active Coupons */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <div
+                className={`lg:col-span-5 rounded-3xl p-5 border space-y-4 ${
+                  theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Users className="w-5 h-5 text-[#7A1F2D] dark:text-amber-400" />
+                    <h3 className="text-base font-black">دعوت مستقیم یا تست سیستم پاداش</h3>
+                  </div>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400">
+                    آنی
+                  </span>
+                </div>
+
+                <p className="text-xs opacity-75 leading-relaxed">
+                  نام و شماره موبایل دوست خود را وارد کنید تا لینک دعوت ارسال شود و پاداش دوطرفه (شارژ کیف پول + کوپن تخفیف) بلافاصله در حساب شما شبیه‌سازی و اعمال گردد:
+                </p>
+
+                <form onSubmit={handleSimulateFriendInvite} className="space-y-3">
+                  <Input
+                    type="text"
+                    aria-label="نام دوست"
+                    placeholder="نام دوست شما (مثلاً: مهدی کریمی)"
+                    icon={<User className="w-4 h-4" />}
+                    value={friendNameInput}
+                    onValueChange={setFriendNameInput}
+                  />
+                  <Input
+                    type="tel"
+                    aria-label="شماره موبایل دوست"
+                    placeholder="شماره موبایل (مثلاً: 09123456789)"
+                    icon={<Phone className="w-4 h-4" />}
+                    value={friendPhoneInput}
+                    onValueChange={setFriendPhoneInput}
+                  />
+                  <Button
+                    type="submit"
+                    variant="filled"
+                    icon={<Send className="w-4 h-4" />}
+                    className="w-full !py-3"
+                  >
+                    ارسال دعوت‌نامه و دریافت پاداش دوطرفه
+                  </Button>
+                </form>
+
+                <div className="pt-3 border-t border-current/10 space-y-2">
+                  <div className="text-xs font-extrabold">
+                    دوستان دعوت‌شده توسط شما ({invitedFriends.length.toLocaleString("fa-IR")} نفر):
+                  </div>
+                  <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
+                    {invitedFriends.map((fr) => (
+                      <div
+                        key={fr.id}
+                        className="p-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-current/10 text-xs flex items-center justify-between gap-2"
+                      >
+                        <div>
+                          <div className="font-bold">{fr.name}</div>
+                          <div className="text-[10px] opacity-65">
+                            {fr.phone} · {fr.date}
+                          </div>
+                        </div>
+                        <div className="text-left">
+                          <div className="font-extrabold text-emerald-500 text-[11px]">
+                            {fr.inviterReward}
+                          </div>
+                          <div className="text-[10px] opacity-75">سهم دوست: {fr.friendReward}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Active Coupons + Wallet Ledger */}
+              <div className="lg:col-span-7 space-y-5">
+                <div
+                  className={`rounded-3xl p-5 border space-y-3 ${
+                    theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Ticket className="w-5 h-5 text-amber-400" />
+                      <h3 className="text-base font-black">کوپن‌ها و کدهای تخفیف شما</h3>
+                    </div>
+                    <span className="text-xs opacity-70">
+                      {coupons.filter((c) => !c.used).length.toLocaleString("fa-IR")} کوپن فعال
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {coupons.map((c) => (
+                      <div
+                        key={c.code}
+                        className={`p-4 rounded-2xl border flex flex-col justify-between gap-3 ${
+                          c.used
+                            ? "opacity-45 border-dashed border-current/20"
+                            : "border-amber-500/35 bg-amber-500/5"
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-mono text-xs font-black px-2.5 py-1 rounded-xl bg-[#7A1F2D] text-white">
+                              {c.code}
+                            </span>
+                            <span className="text-xs font-extrabold text-amber-500">
+                              {c.type === "percent"
+                                ? `${c.value}٪ تخفیف`
+                                : `${formatToman(c.value)} تومان`}
+                            </span>
+                          </div>
+                          <div className="font-bold text-sm mt-2">{c.title}</div>
+                          <p className="text-[11px] opacity-75 mt-1">{c.desc}</p>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 border-t border-current/10">
+                          <span className="text-[11px] font-bold">
+                            {c.used ? "استفاده‌شده" : "آماده استفاده در رزرو"}
+                          </span>
+                          {!c.used && (
+                            <Button
+                              variant="filled"
+                              onClick={() => {
+                                setAppliedCoupon(c);
+                                setCouponInput(c.code);
+                                setCheckoutStep("payment");
+                                setActiveTab("booking");
+                                triggerToast(`کوپن ${c.code} روی رزرو شما فعال شد!`);
+                              }}
+                              className="!px-3 !py-1 !text-xs"
+                            >
+                              استفاده در رزرو
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-3xl p-5 border space-y-3 ${
+                    theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                  }`}
+                >
+                  <h3 className="text-base font-black">تاریخچه تراکنش‌های کیف پول</h3>
+                  <div className="space-y-2">
+                    {walletTransactions.map((tx) => (
+                      <div
+                        key={tx.id}
+                        className="p-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-current/10 flex items-center justify-between gap-3 text-xs"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                              tx.type === "credit"
+                                ? "bg-emerald-500/20 text-emerald-400"
+                                : "bg-rose-500/20 text-rose-400"
+                            }`}
+                          >
+                            {tx.type === "credit" ? (
+                              <ArrowDownLeft className="w-4 h-4" />
+                            ) : (
+                              <ArrowUpRight className="w-4 h-4" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="font-bold">{tx.title}</div>
+                            <div className="text-[11px] opacity-65">
+                              {tx.date} · <span className="text-amber-500">{tx.badge}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className={`font-black text-sm whitespace-nowrap ${
+                            tx.type === "credit" ? "text-emerald-400" : "text-rose-400"
+                          }`}
+                        >
+                          {tx.amount > 0 ? `+${formatToman(tx.amount)}` : formatToman(tx.amount)}{" "}
+                          <span className="text-[10px]">تومان</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ==================================================================
+            VIEW 5: MY BOOKINGS & PROFILE (`barbershop-myBookings.html` & `profile.html`)
+           ================================================================== */}
+        {activeTab === "profile" && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-5 space-y-4">
+              <div
+                className={`rounded-3xl p-5 border space-y-4 ${
+                  theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#7A1F2D] to-amber-600 text-white flex items-center justify-center text-xl font-black">
+                    M
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black">{profile.name}</h3>
+                    <div className="text-xs opacity-75">{profile.phone}</div>
+                    <span className="inline-block mt-1 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400">
+                      {ambassadorTier.name} · کد معرف: {referralCode}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-2 border-t border-current/10">
+                  <div>
+                    <label className="block text-xs font-bold mb-1">نام و نام خانوادگی</label>
+                    <Input
+                      type="text"
+                      aria-label="نام کاربر"
+                      value={profile.name}
+                      onValueChange={(v) => setProfile((p) => ({ ...p, name: v }))}
+                      icon={<User className="w-4 h-4" />}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold mb-1">شماره همراه</label>
+                    <Input
+                      type="tel"
+                      aria-label="شماره همراه"
+                      value={profile.phone}
+                      onValueChange={(v) => setProfile((p) => ({ ...p, phone: v }))}
+                      icon={<Phone className="w-4 h-4" />}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-xs pt-1">
+                    <span>یادآوری پیامکی نوبت و کش‌بک کیف پول</span>
+                    <Switch
+                      aria-label="یادآوری پیامکی"
+                      checked={profile.smsNotify}
+                      onCheckedChange={(v) => setProfile((p) => ({ ...p, smsNotify: v }))}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span>اولویت رزرو VIP آخر هفته</span>
+                    <Switch
+                      aria-label="اولویت VIP"
+                      checked={profile.vipPriority}
+                      onCheckedChange={(v) => setProfile((p) => ({ ...p, vipPriority: v }))}
+                    />
+                  </div>
+                  <Button
+                    variant="filled"
+                    onClick={() => triggerToast("اطلاعات پروفایل با موفقیت ذخیره شد.")}
+                    className="w-full"
+                  >
+                    ذخیره تغییرات پروفایل
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-black">نوبت‌های من (My Bookings)</h3>
+                <SegmentedControl
+                  aria-label="فیلتر نوبت‌ها"
+                  items={[
+                    { value: "upcoming", label: "نوبت‌های پیش‌رو" },
+                    { value: "past", label: "نوبت‌های گذشته" }
+                  ]}
+                  value={bookingsTab}
+                  onValueChange={setBookingsTab}
+                />
+              </div>
+
+              <div className="space-y-3">
+                {bookings
+                  .filter((b) =>
+                    bookingsTab === "upcoming"
+                      ? b.status !== "completed"
+                      : b.status === "completed"
+                  )
+                  .map((bk) => (
+                    <div
+                      key={bk.id}
+                      className={`rounded-3xl p-5 border transition-all ${
+                        bk.status === "completed" ? "opacity-70" : ""
+                      } ${
+                        theme === "dark"
+                          ? "bg-[#1c1c1f] border-white/10"
+                          : "bg-white border-black/10"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-xs font-bold opacity-75">
+                              {bk.id}
+                            </span>
+                            {bk.pinned && (
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold">
+                                سنجاق‌شده
+                              </span>
+                            )}
+                            <span
+                              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                                bk.status === "confirmed"
+                                  ? "bg-emerald-500/20 text-emerald-400"
+                                  : bk.status === "pending"
+                                  ? "bg-amber-500/20 text-amber-400"
+                                  : "bg-neutral-500/20 text-neutral-400"
+                              }`}
+                            >
+                              {bk.status === "confirmed"
+                                ? "تایید شده"
+                                : bk.status === "pending"
+                                ? "در انتظار پرداخت بیعانه"
+                                : "انجام شده"}
+                            </span>
+                          </div>
+                          <h4 className="text-base font-black">{bk.serviceTitle}</h4>
+                          <div className="text-xs opacity-75">
+                            آرایشگر: {bk.barber} · {bk.date} ساعت {bk.time}
+                          </div>
+                        </div>
+
+                        <Menu
+                          aria-label="گزینه‌های نوبت"
+                          items={[
+                            {
+                              label: bk.pinned ? "برداشتن سنجاق" : "سنجاق کردن نوبت",
+                              icon: <Pin className="w-3.5 h-3.5" />,
+                              onSelect: () => {
+                                setBookings((prev) =>
+                                  prev.map((x) =>
+                                    x.id === bk.id ? { ...x, pinned: !x.pinned } : x
+                                  )
+                                );
+                                triggerToast(`وضعیت سنجاق نوبت ${bk.id} تغییر کرد.`);
+                              }
+                            },
+                            {
+                              label: "پرداخت از کیف پول",
+                              icon: <Wallet className="w-3.5 h-3.5" />,
+                              onSelect: () => {
+                                setBookingForm((f) => ({ ...f, serviceId: bk.serviceId }));
+                                setCheckoutStep("payment");
+                                setActiveTab("booking");
+                              }
+                            },
+                            "separator",
+                            {
+                              label: "لغو نوبت",
+                              icon: <Trash2 className="w-3.5 h-3.5" />,
+                              destructive: true,
+                              onSelect: () => {
+                                setBookings((prev) => prev.filter((x) => x.id !== bk.id));
+                                triggerToast(`نوبت ${bk.id} لغو شد و بیعانه به کیف پول برگشت.`);
+                              }
+                            }
+                          ]}
+                        />
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-current/10 flex items-center justify-between text-xs">
+                        <div>
+                          <span className="opacity-70">مبلغ کل: </span>
+                          <span className="font-extrabold">{formatToman(bk.total)} تومان</span>
+                        </div>
+                        {bk.status === "pending" && (
+                          <Button
+                            variant="filled"
+                            onClick={() => {
+                              setBookingForm((f) => ({ ...f, serviceId: bk.serviceId }));
+                              setCheckoutStep("payment");
+                              setActiveTab("booking");
+                            }}
+                            className="!px-3 !py-1.5 !text-xs"
+                          >
+                            پرداخت آنلاین / کیف پول
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ==================================================================
+            VIEW 6: ADMIN PANEL + 1-CLICK IN-BROWSER GITHUB SYNC TO ClickFinal
+           ================================================================== */}
+        {activeTab === "admin" && (
+          <div className="space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-black">پنل مدیریت و انتقال مستقیم به GitHub</h2>
+                <p className="text-xs opacity-75">
+                  انتقال خودکار مخزن به ClickFinal، مدیریت نوبت‌ها، کمیسیون و کیف پول
+                </p>
+              </div>
+              <SegmentedControl
+                aria-label="بخش‌های پنل مدیریت"
+                items={[
+                  { value: "github", label: "۱-کلیک Push به GitHub" },
+                  { value: "dashboard", label: "داشبورد و کمیسیون" },
+                  { value: "bookings", label: "نوبت‌ها" },
+                  { value: "services", label: "خدمات" },
+                  { value: "settings", label: "تنظیمات هدیه" }
+                ]}
+                value={adminSubTab}
+                onValueChange={setAdminSubTab}
+              />
+            </div>
+
+            {/* 1-CLICK GITHUB SYNC PANEL (Runs in user's browser directly against api.github.com) */}
+            {adminSubTab === "github" && (
+              <Glass
+                style={{ ...glassStyle, "--lg-blur": "12px" }}
+                className="rounded-3xl p-6 border border-amber-400/40 space-y-4"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300">
+                      انتقال مستقیم به گیت‌هاب برای اتصال به Cloudflare Pages
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-black mt-2">
+                      کپی پشتیبان از Clickv2 + پوش پروژه جدید روی ClickFinal (شاخه main)
+                    </h3>
+                    <p className="text-xs opacity-80 leading-relaxed">
+                      چون محیط سرور ابری من به دلایل امنیتی اجازه ارسال مستقیم به گیت‌هاب را از سمت سرور نمی‌دهد، این دکمه را مستقیماً داخل پنل شما قرار دادم تا **از مرورگر خودتان با یک کلیک** ابتدا کل مخزن{" "}
+                      <span className="font-mono">Clickv2</span> را به عنوان **Commit #1 (بکاپ کامل)** و بلافاصله نسخه جدید **React + Glisse + کیف پول** را به عنوان **Commit #2** روی شاخه{" "}
+                      <span className="font-mono">main</span> مخزن{" "}
+                      <span className="font-mono">MathewWasHere/ClickFinal</span> پوش کند!
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div>
+                    <label className="block font-bold mb-1">مخزن مبدا (Backup Source)</label>
+                    <Input
+                      type="text"
+                      aria-label="مخزن مبدا"
+                      value={ghSourceRepo}
+                      onValueChange={setGhSourceRepo}
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold mb-1">مخزن مقصد (Cloudflare Target)</label>
+                    <Input
+                      type="text"
+                      aria-label="مخزن مقصد"
+                      value={ghTargetRepo}
+                      onValueChange={setGhTargetRepo}
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold mb-1">GitHub Classic Token</label>
+                    <Input
+                      type="password"
+                      aria-label="توکن گیت‌هاب"
+                      value={ghToken}
+                      onValueChange={setGhToken}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button
+                    variant="filled"
+                    disabled={ghPushStatus === "running"}
+                    onClick={handleDirectGitHubPush}
+                    className="!py-3 !px-6"
+                  >
+                    {ghPushStatus === "running"
+                      ? "در حال انتقال فایل‌ها به GitHub..."
+                      : "اجرای انتقال ۲ مرحله‌ای (Backup + Glisse Upgrade) به ClickFinal"}
+                  </Button>
+                  <span className="text-xs opacity-75">
+                    پس از اتمام، در Cloudflare Pages دستور Build را روی{" "}
+                    <code className="px-1.5 py-0.5 rounded bg-black/30 font-mono">
+                      npm run build
+                    </code>{" "}
+                    و پوشه خروجی را روی{" "}
+                    <code className="px-1.5 py-0.5 rounded bg-black/30 font-mono">dist</code> قرار دهید.
+                  </span>
+                </div>
+
+                {ghPushLogs.length > 0 && (
+                  <div className="rounded-2xl p-4 bg-black/55 border border-white/15 font-mono text-xs space-y-1.5 max-h-56 overflow-y-auto">
+                    {ghPushLogs.map((log, i) => (
+                      <div key={i} className="leading-relaxed">
+                        {log}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Glass>
+            )}
+
+            {adminSubTab === "dashboard" && (
+              <div className="space-y-5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+                  {[
+                    {
+                      label: "نوبت‌های فعال این ماه",
+                      val: `${bookings.length.toLocaleString("fa-IR")} نوبت`,
+                      sub: "+۱۸٪ رشد هفتگی"
+                    },
+                    {
+                      label: "درآمد ناخالص (تومان)",
+                      val: "۴۸.۵M",
+                      sub: "۴۸,۵۰۰,۰۰۰ تومان"
+                    },
+                    {
+                      label: "اعضای دعوت‌شده (Referral)",
+                      val: `${invitedFriends.length.toLocaleString("fa-IR")} عضو جدید`,
+                      sub: "نرخ تبدیل ۸۴٪"
+                    },
+                    {
+                      label: "موجودی کل کیف پول‌ها",
+                      val: `${formatToman(walletBalance)} ت`,
+                      sub: "اعتبار وفاداری مشتریان"
+                    }
+                  ].map((st) => (
+                    <div
+                      key={st.label}
+                      className={`rounded-3xl p-4 border ${
+                        theme === "dark"
+                          ? "bg-[#1c1c1f] border-white/10"
+                          : "bg-white border-black/10"
+                      }`}
+                    >
+                      <div className="text-xs opacity-70">{st.label}</div>
+                      <div className="text-xl sm:text-2xl font-black mt-1 text-[#7A1F2D] dark:text-amber-400">
+                        {st.val}
+                      </div>
+                      <div className="text-[11px] text-emerald-400 mt-1">{st.sub}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <Glass
+                  style={{ ...glassStyle, "--lg-blur": "10px" }}
+                  className="rounded-3xl p-5 space-y-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-black">
+                      ماشین‌حساب کمیسیون پلتفرم ({adminCommissionRate.toLocaleString("fa-IR")}٪)
+                    </h3>
+                    <span className="text-xs font-mono opacity-75">Glisse Interactive Slider</span>
+                  </div>
+                  <Slider
+                    aria-label="نرخ کمیسیون"
+                    min={5}
+                    max={25}
+                    step={1}
+                    value={adminCommissionRate}
+                    onValueChange={setAdminCommissionRate}
+                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <div className="p-3.5 rounded-2xl bg-black/20 border border-white/15">
+                      <div className="opacity-70">کل فروش ماهانه</div>
+                      <div className="text-base font-black mt-1">۴۸,۵۰۰,۰۰۰ تومان</div>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-black/20 border border-white/15">
+                      <div className="opacity-70">سهم کمیسیون ({adminCommissionRate}٪)</div>
+                      <div className="text-base font-black text-amber-400 mt-1">
+                        {formatToman(Math.round((48500000 * adminCommissionRate) / 100))} تومان
+                      </div>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-black/20 border border-white/15">
+                      <div className="opacity-70">خالص پرداختی به سالن</div>
+                      <div className="text-base font-black text-emerald-400 mt-1">
+                        {formatToman(
+                          48500000 - Math.round((48500000 * adminCommissionRate) / 100)
+                        )}{" "}
+                        تومان
+                      </div>
+                    </div>
+                  </div>
+                </Glass>
+              </div>
+            )}
+
+            {adminSubTab === "bookings" && (
+              <div
+                className={`rounded-3xl p-5 border space-y-3 ${
+                  theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                }`}
+              >
+                <h3 className="text-base font-black">لیست نوبت‌های ثبت‌شده مشتریان</h3>
+                <div className="space-y-2.5">
+                  {bookings.map((b) => (
+                    <div
+                      key={b.id}
+                      className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-current/10 flex flex-wrap items-center justify-between gap-3 text-xs"
+                    >
+                      <div>
+                        <span className="font-mono font-bold text-amber-500 ml-2">{b.id}</span>
+                        <span className="font-extrabold text-sm">{b.serviceTitle}</span>
+                        <div className="opacity-70 mt-0.5">
+                          {b.barber} · {b.date} ساعت {b.time}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="glass"
+                          onClick={() => {
+                            setBookings((prev) =>
+                              prev.map((x) =>
+                                x.id === b.id ? { ...x, status: "confirmed" } : x
+                              )
+                            );
+                            triggerToast(`نوبت ${b.id} تایید شد.`);
+                          }}
+                          className="!text-xs"
+                        >
+                          تایید نوبت
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {adminSubTab === "services" && (
+              <div
+                className={`rounded-3xl p-5 border space-y-4 ${
+                  theme === "dark" ? "bg-[#1c1c1f] border-white/10" : "bg-white border-black/10"
+                }`}
+              >
+                <h3 className="text-base font-black">افزودن سرویس جدید به منوی سالن</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <Input
+                    type="text"
+                    aria-label="عنوان سرویس"
+                    placeholder="عنوان سرویس جدید..."
+                    value={newServiceTitle}
+                    onValueChange={setNewServiceTitle}
+                  />
+                  <Input
+                    type="number"
+                    aria-label="قیمت سرویس"
+                    placeholder="قیمت به تومان (مثلاً 550000)"
+                    value={newServicePrice}
+                    onValueChange={setNewServicePrice}
+                  />
+                  <Button
+                    variant="filled"
+                    icon={<Plus className="w-4 h-4" />}
+                    onClick={() => {
+                      if (!newServiceTitle.trim() || !Number(newServicePrice)) return;
+                      const priceNum = Number(newServicePrice);
+                      setServices((prev) => [
+                        ...prev,
+                        {
+                          id: `custom-${Date.now()}`,
+                          category: "main",
+                          title: newServiceTitle.trim(),
+                          badge: "جدید",
+                          price: priceNum,
+                          deposit: Math.round(priceNum * 0.3),
+                          duration: "۴۵ دقیقه",
+                          rating: "۵.۰",
+                          shortDesc: "سرویس تخصصی اضافه‌شده توسط مدیریت سالن",
+                          includes: ["مشاوره تخصصی", "اجرای VIP با مواد اورجینال"]
+                        }
+                      ]);
+                      setNewServiceTitle("");
+                      setNewServicePrice("");
+                      triggerToast("سرویس جدید به منوی پیرایش اضافه شد!");
+                    }}
+                  >
+                    افزودن سرویس
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {adminSubTab === "settings" && (
+              <Glass
+                style={{ ...glassStyle, "--lg-blur": "10px" }}
+                className="rounded-3xl p-5 space-y-4"
+              >
+                <h3 className="text-base font-black">تنظیمات پاداش معرفی دوستان و کیف پول</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span>مبلغ هدیه نقدی کیف پول (برای معرف و دوست):</span>
+                      <span className="font-extrabold text-amber-400">
+                        {formatToman(adminReferralBonusAmount)} تومان
+                      </span>
+                    </div>
+                    <Slider
+                      aria-label="مبلغ هدیه معرفی"
+                      min={50000}
+                      max={500000}
+                      step={25000}
+                      value={adminReferralBonusAmount}
+                      onValueChange={setAdminReferralBonusAmount}
+                    />
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span>درصد کوپن تخفیف دوطرفه معرفی دوستان:</span>
+                      <span className="font-extrabold text-emerald-400">
+                        {adminReferralCouponPct}٪ تخفیف
+                      </span>
+                    </div>
+                    <Slider
+                      aria-label="درصد کوپن معرفی"
+                      min={10}
+                      max={50}
+                      step={5}
+                      value={adminReferralCouponPct}
+                      onValueChange={setAdminReferralCouponPct}
+                    />
+                  </div>
+                </div>
+              </Glass>
+            )}
+          </div>
+        )}
+      </main>
+
+      {/* ====================================================================
+          FLOATING BOTTOM GLISSE <TabBar> NAVIGATION (Press & Hold Lifts Into Lens)
+         ==================================================================== */}
+      <div className="fixed bottom-4 inset-x-0 z-40 mx-auto max-w-lg px-3">
+        <TabBar
+          aria-label="منوی اصلی پیرایش"
+          badgeMap={{
+            wallet: `${coupons.filter((c) => !c.used).length}`,
+            profile: `${bookings.filter((b) => b.status !== "completed").length}`
+          }}
+          items={[
+            { value: "home", label: "خانه", icon: <Home className="w-4 h-4" /> },
+            { value: "services", label: "خدمات", icon: <Scissors className="w-4 h-4" /> },
+            { value: "booking", label: "رزرو نوبت", icon: <Calendar className="w-4 h-4" /> },
+            { value: "wallet", label: "کیف پول و هدیه", icon: <Gift className="w-4 h-4" /> },
+            { value: "profile", label: "نوبت‌های من", icon: <User className="w-4 h-4" /> }
+          ]}
+          value={activeTab === "admin" ? "home" : activeTab}
+          onValueChange={(val) => {
+            setActiveTab(val);
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
